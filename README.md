@@ -19,6 +19,7 @@
 - `remote_cod/AsfDiagnosticProxy/`：诊断代理模块目录，包含代理实现源码和构建脚本，通常用于转发/桥接诊断请求。
 - `remote_cod/diag_doip_edge/`：DoIP（Diagnostics over IP）边缘模块目录，含 CMake 配置和忽略规则，通常用于以太网诊断接入边缘能力。
 - `remote_cod/virt_diag_tester/`：虚拟诊断测试器目录，目前以 `CMakeLists.txt` 为主，可作为测试程序或测试框架入口。
+- `remote_cod/diag_middleware/`：新增诊断中间件样例模块，用于接收远端诊断消息并执行读/清DTC、按ECU刷写、整车刷写等任务；支持通过配置文件开关能力与ECU白名单。
 
 ## 编译说明
 
@@ -56,6 +57,15 @@ BUILD_TYPE=Debug GENERATOR="Ninja" bash scripts/build_all.sh
 ```bash
 cmake -S remote_cod/AsfDiagnosticScript -B build/AsfDiagnosticScript -DCMAKE_BUILD_TYPE=Release
 cmake --build build/AsfDiagnosticScript -j"$(nproc)"
+```
+
+
+- 诊断中间件示例模块（新增）：
+
+```bash
+cmake -S remote_cod/diag_middleware -B build/diag_middleware -DCMAKE_BUILD_TYPE=Release
+cmake --build build/diag_middleware -j"$(nproc)"
+./build/diag_middleware/diag_middleware --config remote_cod/diag_middleware/conf/middleware.conf --inbox remote_cod/diag_middleware/conf/sample_messages.txt
 ```
 
 ### 常见失败原因
