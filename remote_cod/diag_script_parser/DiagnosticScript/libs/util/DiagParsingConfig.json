@@ -1,0 +1,21 @@
+{
+    "Ip":"0.0.0.0",
+    "Port":3007,
+    "Socket_Type":0,
+    "Socket_Pip_File":"/tmp/asf_ds_socket_pip_file.sock",
+    "Interact_Pip_File":"/tmp/asf_ds_interact_pip_file.sock",
+    "DiagResultLogPath":"DiagnosticScript/result/DiagResult.json",
+    "MessageLogPath":"DiagnosticScript/result/DiagMessageLog.txt",
+    "PUDLogPath":"DiagnosticScript/result/SendAndReceivePDULog.txt",
+    "RunningLogPath":"./DiagRunningLog.txt",
+
+    "Task_Number":5,
+    "Local_Script_Path":"/DiagnosticScript/scriptFile/fixed",
+    "Inet_Script_Path":"/DiagnosticScript/scriptFile/temporary",
+
+    "StopFlag":"/tmp/asf_ds_stop_flag.txt",
+
+    "PersistenceTasksDir":"/userdata/autox/opt/DiagnosticScript/persistenceTasks",
+	
+	"ScriptPaths": ["/userdata/autox/usr/lib/python3.14","/userdata/autox/usr/lib/python3.14/lib-dynload"]
+}

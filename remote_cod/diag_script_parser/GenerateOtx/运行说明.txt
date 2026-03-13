@@ -1,0 +1,22 @@
+环境：
+python 3.9.9
+generateDS 2.40.6
+【注】安装python后，添加python环境变量，然后pip install generateDS安装generateDS
+
+Options:
+  -h, --help    show this help message and exit
+  -f, --forxml  generate xml
+  -d, --dir     generate xmls in dir
+  -x, --xsd     rebuilding xsd to xsdToPython.py（变更xsd后需要运行一次此命令）
+
+(1)若xsd文件有更新时：python main.py -d [该处是xxx.xml文件所在的文件加的名字] -x  [该处是xxx.xsd文件的名字，要包含扩展名.xsd]
+【注】xsd文件，放在main.py同级目录
+(2)若xsd没更新，python main.py -d [该处是xxx.xml文件所在的文件加的名字]
+(3)生成的最新诊断脚本在GeneratedCode文件夹里
+
+
+例：首先进入main.py所在路径，新建一个文件夹new_xml_2022_01_18，将对应的xxx.xml文件放在其中，对应的xsd文件放在main.py同级目录
+
+xsd有更行   执行  python main.py -d new_xml_2022_01_18 -x DiagnosticProcedureV3.xsd
+xsd没有更新  执行   python main.py -d new_xml_2022_01_18
+在GeneratedCode文件中会生成新的诊断脚本文件

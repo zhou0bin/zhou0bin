@@ -1,0 +1,10 @@
+[
+    {
+        "program": "autox",
+        "algorithm": "aes_128_cmac",
+        "config": {
+            "method": "module",
+            "path": ""
+        }
+    }
+]

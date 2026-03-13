@@ -1,0 +1,18 @@
+{
+    "ProjectName":"a18",
+    "FACTORY":"GACNE",
+    "VIN":"LA02SW00000000049",
+    "MTOC":"M1F32DA4CN11",
+    "LOCATION":"INIT",
+    "LAS":[
+        "CE02",
+        "FK02",
+        "LX02",
+        "GP02",
+        "FL03",
+        "0SR7"
+    ],
+    "TPMS":"31552230315522313155223231552233",
+    "PIN":"11223344",
+    "ESK":"00112233445566778899AABBCCDDEEFF"
+}

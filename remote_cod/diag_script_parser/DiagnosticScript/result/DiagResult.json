@@ -1,0 +1,49 @@
+{
+    "VIN": "LA02SW00000000049",
+    "TimeStamp": "2025-12-17T18:07:24",
+    "MT": "M1F32DA4CN11",
+    "OptionCodes": [
+        "CE02",
+        "FK02",
+        "LX02",
+        "GP02",
+        "FL03",
+        "0SR7"
+    ],
+    "Result": {
+        "Location": "Init",
+        "TotalResult": "NOK",
+        "ReleaseNumber": "1611900407",
+        "SessionID": "123",
+        "PackageName": "D:\\DiagnosticScript\\scriptFile\\fixed\\testCCU_new",
+        "ConditionChecks": {
+            "TotalResult": "NOK",
+            "Conditions": {}
+        },
+        "StatBlocks": [
+            {
+                "ID": 1,
+                "Result": "OK",
+                "ChineseTranslation": "测试序列",
+                "EnglishTranslation": "Test Block",
+                "StatSteps": [
+                    {
+                        "ID": 43,
+                        "Result": "OK",
+                        "ChineseTranslation": "获取故障码",
+                        "EnglishTranslation": "Get DTCs",
+                        "Format": "HEX",
+                        "Value": " REQ=190201 ,RESP=590209d21a8709c146870992b0130992b0140992b01509",
+                        "SetValue": "5902",
+                        "Minimum": "",
+                        "MeasureValue": "D21A87-09|C14687-09|92B013-09|92B014-09|92B015-09",
+                        "Maximum": "",
+                        "Units": "",
+                        "PrintAtNok": true,
+                        "PrintAtOK": false
+                    }
+                ]
+            }
+        ]
+    }
+}

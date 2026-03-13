@@ -1,0 +1,32 @@
+{
+    "Ip":"0.0.0.0",
+    "Port":3007,
+    "Socket_Type":0,
+    "Socket_Pip_File":"/tmp/asf_ds_socket_pip_file.sock",
+    "Interact_Pip_File":"/tmp/asf_ds_interact_pip_file.sock",
+    "DiagResultLogPath":"/data/DiagnosticScript/result/DiagResult.json",
+    "MessageLogPath":"/data/DiagnosticScript/result/DiagMessageLog.txt",
+    "PUDLogPath":"/data/DiagnosticScript/result/SendAndReceivePDULog.txt",
+    "RunningLogPath":"./DiagRunningLog.txt",
+
+    "Task_Number":5,
+    "Local_Script_Path":"/data/DiagnosticScript/scriptFile/fixed",
+    "Inet_Script_Path":"/data/DiagnosticScript/scriptFile/temporary",
+
+    "DiagScriptPackagePath":"/data/DiagnosticScript",
+    "DLogPath":"/data/DiagnosticScript/result",
+    "VehDataPath":"/data/DiagnosticScript/vehicleData/vehicle_data.json",
+    "VehDataDir":"/data/DiagnosticScript/vehicleData",
+    "VehDataDefault":"/opt/DiagnosticScript/vehicleData/vehicle_data.json",
+    "ConditionCheckPath":"/data/DiagnosticScript/conditioncheck",
+    "ConditionFIle":"/data/DiagnosticScript/conditioncheck/condition_check.json",
+    "ConditionDefaultFIle":"/opt/DiagnosticScript/conditioncheck/condition_check.json",
+    "TmpCheckResult":"/data/DiagnosticScript/result/tempcheckresult.json",
+    "EngineParameterPath":"/data/DiagnosticScript/engineTimeParameter/engineTimeParameter.json",
+    "ScriptParam":"/data/DiagnosticScript/vehicleData/script_parameter.json",
+    "EngineTimeParameterDir":"/data/DiagnosticScript/engineTimeParameter",
+    "VehicleConDir":"/data/DiagnosticScript/vehicleConfig",
+
+    "StopFlag":"/tmp/asf_ds_stop_flag.txt"
+    
+}

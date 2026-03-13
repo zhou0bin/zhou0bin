@@ -1,0 +1,22 @@
+{
+  "VehicleSpeedCheck":{
+	  "Enable":"False",
+	  "SetValue":"5"
+	  
+  },
+  "VehicleModeCheck":
+  {
+	  "Enable":"False",
+	  "SetValue":["NORMAL","MANUFACTURE","TRANSPORT","SHOW","POSTCRASH","MAINTENANCE","RESERVED","INVALID"]
+  },
+  "UsageModeCheck":
+  {
+	  "Enable":"False",
+	  "SetValue":["STANDBY","COMFORT"]
+  },
+  "SocCheck":{
+	  "Enable":"False",
+	  "SetValue":"0"
+	  
+  }
+}

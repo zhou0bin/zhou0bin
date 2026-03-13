@@ -1,0 +1,9 @@
+{
+    "target_ip": "172.16.27.231",
+    "target_port": 13400,
+    "socket_connect_timeout": 5,
+    "target_add": "/tmp/ASF_UDS_ON_NEUSAR_NET_Interface",
+    "communication": "local",
+    "need_repeat": true,
+    "default_time": 3
+}

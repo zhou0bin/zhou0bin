@@ -1,0 +1,17 @@
+[2025-12-17 18:07:24,639]-[MainThread-DEBUG-FSWM_get_dtcs.xml.py-PDUOpenChannel_9ded88f64f9d4993baa88fd1876b84f9-30:]Excute PDUOpenChannel_9ded88f64f9d4993baa88fd1876b84f9
+[2025-12-17 18:07:24,639]-[MainThread-DEBUG-log_info.py-handler_exception-127:]>>>>Enter : PDUOpenChannel
+[2025-12-17 18:07:26,000]-[MainThread-DEBUG-log_info.py-handler_exception-145:]<<<<leave : PDUOpenChannel
+[2025-12-17 18:07:26,001]-[MainThread-DEBUG-FSWM_get_dtcs.xml.py-DtcReadByStatusMask_2b82800c7ac34473b6a29cadfe48a293-35:]Excute DtcReadByStatusMask_2b82800c7ac34473b6a29cadfe48a293 ECU = fswm, Odxfile = Autox_FSWM, MaskValue = 01, MaskedDTCs = , StatStep = StatStep
+[2025-12-17 18:07:26,001]-[MainThread-DEBUG-log_info.py-handler_exception-127:]>>>>Enter : DtcReadByStatusMask
+[2025-12-17 18:07:26,007]-[MainThread-DEBUG-DtcReadByStatusMask.py-DtcReadByStatusMask-71:]{'ECU': <libs.appAPI.LocalVariable.ecuDtObj object at 0x000001E331EBC440>, 'RequestString': '190201', 'TargetResponseString': '5902'}
+[2025-12-17 18:07:26,007]-[MainThread-DEBUG-ExcuteServiceAndCheckLeadingResponse.py-ExcuteServiceAndCheckLeadingResponse_P-53:]{'EcuDtObj': <libs.appAPI.LocalVariable.ecuDtObj object at 0x000001E331EBC440>, 'RequestString': '190201', 'TargetResponseString': '5902', 'LeadingByteLength': 4}
+[2025-12-17 18:07:26,008]-[MainThread-ERROR-pdu_logical_link.py-RepeatRequest-265:]Find not AXX_PrepareFile.py
+[2025-12-17 18:07:26,054]-[MainThread-DEBUG-ExcuteServiceAndCheckLeadingResponse.py-ExcuteServiceAndCheckLeadingResponse_P-144:]{'StatStepExcute.Value': 'REQ=190201;RESP=590209d21a8709c146870992b0130992b0140992b01509', 'IsExcuteSuccessful': True, 'IsCheckSuccess': True, 'StatStepCheck.Value': 'REQ=190201;RESP=590209d21a8709c146870992b0130992b0140992b01509', 'VciResult': '590209d21a8709c146870992b0130992b0140992b01509'}
+[2025-12-17 18:07:26,054]-[MainThread-DEBUG-ExcuteServiceAndCheckLeadingResponse.py-ExcuteServiceAndCheckLeadingResponse_P-146:]{'IsExcuteSuccessful': True, 'StatStepExcute.Result': 'OK', 'StatStepExcute.Value': 'REQ=190201;RESP=590209d21a8709c146870992b0130992b0140992b01509', 'StatStepExcute.Format': 'HEX', 'StatStepExcute.MeasureValue': '09D21A8709C146870992B0130992B0140992B01509', 'StatStepExcute.SetValue': '5902'}
+[2025-12-17 18:07:26,054]-[MainThread-DEBUG-ExcuteServiceAndCheckLeadingResponse.py-ExcuteServiceAndCheckLeadingResponse_P-150:]{'IsCheckSuccess': True, 'StatStepCheck.Result': 'OK', 'StatStepCheck.Value': 'REQ=190201;RESP=590209d21a8709c146870992b0130992b0140992b01509', 'StatStepCheck.Format': 'HEX', 'StatStepCheck.MeasureValue': '09D21A8709C146870992B0130992B0140992B01509', 'StatStepCheck.SetValue': '5902'}
+[2025-12-17 18:07:26,054]-[MainThread-DEBUG-DtcReadByStatusMask.py-DtcReadByStatusMask-79:]{'StatStepRead.Value': 'REQ=190201;RESP=590209d21a8709c146870992b0130992b0140992b01509', 'IsReadSuccessful': True, 'VciResult': '590209d21a8709c146870992b0130992b0140992b01509'}
+[2025-12-17 18:07:26,054]-[MainThread-ERROR-DtcReadByStatusMask.py-DtcReadByStatusMask-88:]DtcReadByStatusMask:no DTC
+[2025-12-17 18:07:26,055]-[MainThread-DEBUG-log_info.py-handler_exception-145:]<<<<leave : DtcReadByStatusMask
+[2025-12-17 18:07:26,055]-[MainThread-DEBUG-FSWM_get_dtcs.xml.py-PDUCloseChannel_742c5d324c2e4429b456a7c15e5ed5bc-40:]Excute PDUCloseChannel_742c5d324c2e4429b456a7c15e5ed5bc PDUChancelHandle = 
+[2025-12-17 18:07:26,055]-[MainThread-DEBUG-log_info.py-handler_exception-127:]>>>>Enter : PDUCloseChannel
+[2025-12-17 18:07:26,093]-[MainThread-DEBUG-log_info.py-handler_exception-145:]<<<<leave : PDUCloseChannel

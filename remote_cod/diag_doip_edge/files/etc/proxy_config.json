@@ -1,0 +1,407 @@
+{
+    "DiagnosticArbitration": {
+        "ArbitrationEnable": true,
+        "ArbitrationTime": 5000
+    },
+    "DiagnosticAuthentication": {
+        "AuthenticationEnable": false,
+        "AuthenticationTime": 5000
+    },
+    "DoIp": {
+        "Eid": 0,
+        "EidUseMac": true,
+        "EntityStatusMaxByteFieldUse": true,
+        "Gid": 0,
+        "GidInvalidPattern": 0,
+        "IsActivationLineDependent": true,
+        "MaxConcurrentTcpSockets": 3,
+        "MaxDataSize": 2097152,
+        "MaxInitialVehicleAnnouncementTime": 0.0,
+        "NodeType": 1,
+        "VehicleIdentificationSyncStatus": false,
+        "VinInvalidPattern": 0
+    },
+    "EcuInstance": {
+        "diagnosticAddress": 2016,
+        "functionalAddress": 2015
+    },
+    "EdgeNode": {
+        "diagnosticAddress": 3712
+    },
+    "Network": {
+        "TcpPort": 13400,
+        "UdpPort": 13400,
+        "ipv4MulticastIpAddress": "0.0.0.0",
+        "local_ip": "172.27.19.20"
+    },
+    "P2Timings": {
+        "p2": 50,
+        "p2_star": 5000,
+        "transmission_delay": 100
+    },
+    "RoutingGatewayTable": [
+        {
+            "Id": 1,
+            "Name": "CAN_GATEWAY",
+            "port": 0,
+            "remote_ip": "0.0.0.0",
+            "remote_port": 0
+        }
+    ],
+    "RoutingNodeTable": [
+    ],
+    "RoutingPartitionTable": [
+    ],
+    "RoutingTable": [
+        {
+            "diagnosticAddress": 2016,
+            "gateway": 1,
+            "name": "VDU"
+        },
+        {
+            "diagnosticAddress": 1847,
+            "gateway": 1,
+            "name": "BMS"
+        },
+        {
+            "diagnosticAddress": 1846,
+            "gateway": 1,
+            "name": "CDU"
+        },
+        {
+            "diagnosticAddress": 1856,
+            "gateway": 1,
+            "name": "DCDC_F"
+        },
+        {
+            "diagnosticAddress": 1907,
+            "gateway": 1,
+            "name": "EVCC"
+        },
+        {
+            "diagnosticAddress": 1858,
+            "gateway": 1,
+            "name": "MCU_R"
+        },
+        {
+            "diagnosticAddress": 1982,
+            "gateway": 1,
+            "name": "ISC"
+        },
+        {
+            "diagnosticAddress": 1872,
+            "gateway": 1,
+            "name": "ESP"
+        },
+        {
+            "diagnosticAddress": 1873,
+            "gateway": 1,
+            "name": "DPB"
+        },
+        {
+            "diagnosticAddress": 1955,
+            "gateway": 1,
+            "name": "FPM"
+        },
+        {
+            "diagnosticAddress": 1988,
+            "gateway": 1,
+            "name": "RWS1"
+        },
+        {
+            "diagnosticAddress": 1972,
+            "gateway": 1,
+            "name": "RWS2"
+        },
+        {
+            "diagnosticAddress": 1985,
+            "gateway": 1,
+            "name": "HWA1"
+        },
+        {
+            "diagnosticAddress": 1986,
+            "gateway": 1,
+            "name": "HWA2"
+        },
+        {
+            "diagnosticAddress": 1984,
+            "gateway": 1,
+            "name": "FAA1"
+        },
+        {
+            "diagnosticAddress": 1987,
+            "gateway": 1,
+            "name": "FAA2"
+        },
+        {
+            "diagnosticAddress": 2033,
+            "gateway": 1,
+            "name": "ACU"
+        },
+        {
+            "diagnosticAddress": 1923,
+            "gateway": 1,
+            "name": "ACU"
+        },
+        {
+            "diagnosticAddress": 1909,
+            "gateway": 1,
+            "name": "SWSM_L"
+        },
+        {
+            "diagnosticAddress": 1910,
+            "gateway": 1,
+            "name": "SWSM_R"
+        },
+        {
+            "diagnosticAddress": 1908,
+            "gateway": 1,
+            "name": "FSWM"
+        },
+        {
+            "diagnosticAddress": 1969,
+            "gateway": 1,
+            "name": "PSC"
+        },
+        {
+            "diagnosticAddress": 1940,
+            "gateway": 1,
+            "name": "HCM_L"
+        },
+        {
+            "diagnosticAddress": 1943,
+            "gateway": 1,
+            "name": "HCM_R"
+        },
+        {
+            "diagnosticAddress": 1892,
+            "gateway": 1,
+            "name": "MDL_FL"
+        },
+        {
+            "diagnosticAddress": 1893,
+            "gateway": 1,
+            "name": "MDL_FR"
+        },
+        {
+            "diagnosticAddress": 1894,
+            "gateway": 1,
+            "name": "MDL_RL"
+        },
+        {
+            "diagnosticAddress": 1895,
+            "gateway": 1,
+            "name": "MDL_RR"
+        },
+        {
+            "diagnosticAddress": 1958,
+            "gateway": 1,
+            "name": "LDM_L"
+        },
+        {
+            "diagnosticAddress": 1956,
+            "gateway": 1,
+            "name": "LDM_R"
+        },
+        {
+            "diagnosticAddress": 1957,
+            "gateway": 1,
+            "name": "WPC_R"
+        },
+        {
+            "diagnosticAddress": 1970,
+            "gateway": 1,
+            "name": "WPC_F"
+        },
+        {
+            "diagnosticAddress": 1971,
+            "gateway": 1,
+            "name": "TPMS"
+        },
+        {
+            "diagnosticAddress": 1890,
+            "gateway": 1,
+            "name": "APA"
+        },
+        {
+            "diagnosticAddress": 1860,
+            "gateway": 1,
+            "name": "DCU_FL"
+        },
+        {
+            "diagnosticAddress": 1861,
+            "gateway": 1,
+            "name": "DCU_FL"
+        },
+        {
+            "diagnosticAddress": 1862,
+            "gateway": 1,
+            "name": "DCU_RL"
+        },
+        {
+            "diagnosticAddress": 1863,
+            "gateway": 1,
+            "name": "DCU_RR"
+        },
+        {
+            "diagnosticAddress": 1924,
+            "gateway": 1,
+            "name": "DRM_FL"
+        },
+        {
+            "diagnosticAddress": 1794,
+            "gateway": 1,
+            "name": "DRM_FR"
+        },
+        {
+            "diagnosticAddress": 1938,
+            "gateway": 1,
+            "name": "DRM_RL"
+        },
+        {
+            "diagnosticAddress": 1939,
+            "gateway": 1,
+            "name": "DRM_RR"
+        },
+        {
+            "diagnosticAddress": 1857,
+            "gateway": 1,
+            "name": "DRM_R"
+        },
+        {
+            "diagnosticAddress": 1921,
+            "gateway": 1,
+            "name": "SCM_FL"
+        },
+        {
+            "diagnosticAddress": 1920,
+            "gateway": 1,
+            "name": "SCM_FR"
+        },
+        {
+            "diagnosticAddress": 1911,
+            "gateway": 1,
+            "name": "SCM_R"
+        },
+        {
+            "diagnosticAddress": 1812,
+            "gateway": 1,
+            "name": "AMP"
+        },
+        {
+            "diagnosticAddress": 1976,
+            "gateway": 1,
+            "name": "FAC"
+        },
+        {
+            "diagnosticAddress": 1978,
+            "gateway": 1,
+            "name": "RAC"
+        },
+        {
+            "diagnosticAddress": 1814,
+            "gateway": 1,
+            "name": "TAC_R"
+        },
+        {
+            "diagnosticAddress": 1813,
+            "gateway": 1,
+            "name": "TAC_F"
+        },
+        {
+            "diagnosticAddress": 1744,
+            "gateway": 1,
+            "name": "LF_pCam"
+        },
+        {
+            "diagnosticAddress": 1745,
+            "gateway": 1,
+            "name": "Ri_bLid"
+        },
+        {
+            "diagnosticAddress": 1746,
+            "gateway": 1,
+            "name": "Le_bLid"
+        },
+        {
+            "diagnosticAddress": 1747,
+            "gateway": 1,
+            "name": "Fr_bLid"
+        },
+        {
+            "diagnosticAddress": 1748,
+            "gateway": 1,
+            "name": "FR_CAM_LM/FAC6"
+        },
+        {
+            "diagnosticAddress": 1749,
+            "gateway": 1,
+            "name": "Ri_Cam"
+        },
+        {
+            "diagnosticAddress": 1750,
+            "gateway": 1,
+            "name": "Re_Cam"
+        },
+        {
+            "diagnosticAddress": 1751,
+            "gateway": 1,
+            "name": "Le_Cam"
+        },
+        {
+            "diagnosticAddress": 1760,
+            "gateway": 1,
+            "name": "FR_Cam"
+        },
+        {
+            "diagnosticAddress": 1761,
+            "gateway": 1,
+            "name": "FL_Cam"
+        },
+        {
+            "diagnosticAddress": 1762,
+            "gateway": 1,
+            "name": "RRB_pCam"
+        },
+        {
+            "diagnosticAddress": 1763,
+            "gateway": 1,
+            "name": "LRB_pCam"
+        },
+        {
+            "diagnosticAddress": 1764,
+            "gateway": 1,
+            "name": "Re_bLid"
+        },
+        {
+            "diagnosticAddress": 1765,
+            "gateway": 1,
+            "name": "M_CAM_LM/RAC4"
+        },
+        {
+            "diagnosticAddress": 1766,
+            "gateway": 1,
+            "name": "Re_CAM_LM/RAC5"
+        }
+    ],
+    "ServiceRoutingTableByDataIdToReadDid": [
+    ],
+    "ServiceRoutingTableByDataIdToWriteDid": [
+    ],
+    "ServiceRoutingTableByRoutineId": [
+    ],
+    "ServiceRoutingTableByServiceId": [
+    ],
+    "TesterTable": [
+        {
+            "TesterAddress": 3712,
+            "TesterPriority": 1,
+            "TesterType": 1
+        },
+        {
+            "TesterAddress": 3712,
+            "TesterPriority": 3,
+            "TesterType": 2
+        }
+    ]
+}

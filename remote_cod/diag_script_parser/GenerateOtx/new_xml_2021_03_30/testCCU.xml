@@ -1,0 +1,585 @@
+<Procedure Title="" GUID="Proc_3aafdbcec01c405f9cfa99c578a25afb" Creator="GAC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///E:/%e5%ad%a6%e4%b9%a0%e8%b5%84%e6%96%99/%e6%80%bb%e7%ba%bf%e8%af%8a%e6%96%ad%e5%ad%a6%e4%b9%a0%e8%b5%84%e6%96%99/1%e8%bd%a6%e5%9e%8b%e9%a1%b9%e7%9b%ae/A02/%e8%84%9a%e6%9c%ac%e6%a0%b7%e4%be%8b/%e5%b9%bf%e6%b1%bd%e8%84%9a%e6%9c%ac/DiagnosticProcedureV6.xsd">
+	<StatBlock ID="1" GUID="StatBlk_a9cf31f591b94bf0a9221f655b954d3a" EnglishTitle="Test Block" ChineseTitle="测试序列" PrintAtNOK="true" PrintAtOK="true"/>
+	<EditHistoryList/>
+	<LocalVariables>
+		<LocalVariable VariableName="StatStep_Write0100" GUID="BsVar_49581357fe944c1594a823ee64913304" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="24" EnglishTitle="Write 0100" ChineseTitle="写入0100" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="IsIDOK" GUID="BsVar_e731951bea664696a23bb77c6a198315" Value="false" VariableType="bool" BaseDataType="bool" DefaultValue=""/>
+		<LocalVariable VariableName="dict1" GUID="BsVar_559c0f7bde8f49aa981a1b651201749c" Value="{'DTC':'14A311','DTCExtendedDataRecordNumber':'ff'}" VariableType="object" BaseDataType="object" DefaultValue=""/>
+		<LocalVariable VariableName="StatStepClearDTC" GUID="BsVar_ce36e097aebe449b80da36826b8b51aa" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="43" EnglishTitle="Clear DTC" ChineseTitle="清除故障码" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="Int3" GUID="BsVar_96ee796f07ef4114b0f0a68e0c77c337" Value="3" VariableType="int" BaseDataType="int" DefaultValue=""/>
+		<LocalVariable VariableName="Time100" GUID="BsVar_d3c45d27772d404cb84c784ceae99c25" Value="100" VariableType="int" BaseDataType="int" DefaultValue=""/>
+		<LocalVariable VariableName="ResultHWID" GUID="BsVar_5a2a97b00af1480682e58ffecba5b155" Value="" VariableType="string" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="StatStepRead0204" GUID="BsVar_59a2a0c41e984624b257a5092713ca18" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="41" EnglishTitle="read 0204" ChineseTitle="读取0204" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="ResultID" GUID="BsVar_fe82bec3b7864feb826f3738f14d1a3d" Value="" VariableType="string" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="StatStepCheckVIN" GUID="BsVar_673485934e374a4abebeb26b09a20183" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="40" EnglishTitle="Check VIN" ChineseTitle="检查VIN" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="RequestStr" GUID="BsVar_7118a16aebf54ed4a280f5b3e41765f5" Value="220204" VariableType="string" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="IsWriteSuccessful" GUID="BsVar_bea78f15da52486380f1dc5ac5546f6b" Value="false" VariableType="bool" BaseDataType="bool" DefaultValue=""/>
+		<LocalVariable VariableName="StatStepWriteVIN" GUID="BsVar_0928b0aed08648c58992f6088d2df64a" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="38" EnglishTitle="Write VIN" ChineseTitle="写入VIN" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="StatStep_StartCom" GUID="BsVar_81d58e7888974a2a9f2c97ca47ee2eb0" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="3" EnglishTitle="Start Com Failed" ChineseTitle="启动通讯失败" PrintAtNOK="false" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="StatStepCheck0110" GUID="BsVar_65fc5e025edf4ece81e6fdaf56c793e1" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="37" EnglishTitle="Check 0110" ChineseTitle="检查0110" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="dict2" GUID="BsVar_17591b7b59b640ef8bcf942a680e4af5" Value="{'DTC':'14A311','DTCSnapshotRecordNumber':'ff'}" VariableType="object" BaseDataType="object" DefaultValue=""/>
+		<LocalVariable VariableName="IsReadSuccessful" GUID="BsVar_4cedbbbeafee469ba9d26602dcf55414" Value="false" VariableType="bool" BaseDataType="bool" DefaultValue=""/>
+		<LocalVariable VariableName="ResultSWID" GUID="BsVar_2814d1cd05d9469c8373750cf280bc7e" Value="" VariableType="string" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="StatStep_CheckID" GUID="BsVar_14961346f0774738a68015a6f4df6812" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="18" EnglishTitle="Check ECU ID" ChineseTitle="检查零件号" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="StatStepGAC_SparePartNumberDataIdentifier_F187_Read" GUID="BsVar_6499674ca9394315936a63e62bb1ba2f" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="47" EnglishTitle="Read ID" ChineseTitle="读取零件号" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="Str_0100" GUID="BsVar_329b3493f50d4acda8ae2581bf368dfa" Value="0100" VariableType="string" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="Result" GUID="BsVar_532aa135acfd42e692c061492b3b4d05" Value="false" VariableType="bool" BaseDataType="bool" DefaultValue=""/>
+		<LocalVariable VariableName="StatStepRead_DTC_Extended_data" GUID="BsVar_92eda761c1ad492eac8d52b31ebdb4d8" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="50" EnglishTitle="Read Extended Data" ChineseTitle="读取拓展数据" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="NoneObject" GUID="BsVar_76d9c513371746e69cc3d11b21f8da2e" Value="None" VariableType="object" BaseDataType="object" DefaultValue=""/>
+		<LocalVariable VariableName="ShortNameGAC_ECUSoftwareVersionNumber_F189_Read" GUID="BsVar_d15c1830e43a4ba99623add2d560fcc7" Value="GAC_ECUSoftwareVersionNumber_F189_Read" VariableType="string" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="StatStep_CheckHWID" GUID="BsVar_c8333e1057d54b8d98c52367ef848b53" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="20" EnglishTitle="Check ECU HWID" ChineseTitle="检查ECU硬件版本号" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="StatStepGAC_ECUHardwareVersionNumber_F17F_Read" GUID="BsVar_4bb7aa158132496483a4b9bf51cebcda" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="49" EnglishTitle="Read HW number" ChineseTitle="读取硬件版本号" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="ShortNameGAC_SparePartNumberDataIdentifier_F187_Read" GUID="BsVar_66259dd5ccdf48b4a28352e63272a740" Value="GAC_SparePartNumberDataIdentifier_F187_Read" VariableType="string" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="StatStepCheck0204" GUID="BsVar_5249bfee5eba4445815f857d30fa4fe4" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="42" EnglishTitle="check 0204" ChineseTitle="检查0204" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="IsExcuteSuccessful" GUID="BsVar_b19fd4a221d54c10aa717ed22e1b8538" Value="false" VariableType="bool" BaseDataType="bool" DefaultValue=""/>
+		<LocalVariable VariableName="IsSWIDOK" GUID="BsVar_e10fabca665a482980e6d59bcf599811" Value="false" VariableType="bool" BaseDataType="bool" DefaultValue=""/>
+		<LocalVariable VariableName="StatStepExtendedDiagnostic_Control" GUID="BsVar_26a2c9d61cdb45b58d33e6d34603fa7d" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="46" EnglishTitle="Enter Extended Diagnostic Control" ChineseTitle="进入拓展模式" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="VciResultSWID" GUID="BsVar_10f909a495474c249dd7d654702d644d" Value="" VariableType="vciResult" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="IsSuccess" GUID="BsVar_0199c96c2e124d30802f9de57950f1e1" Value="false" VariableType="bool" BaseDataType="bool" DefaultValue=""/>
+		<LocalVariable VariableName="Str_00000000" GUID="BsVar_acefc61d59154ecc988ec6b1bd9730a2" Value="00000000" VariableType="string" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="ShortNameFault_Memory_Read_Snapshot_record_by_DTC_number" GUID="BsVar_c8f50e0259074d5e9ae55aaef1dfbf14" Value="Fault_Memory_Read_Snapshot_record_by_DTC_number" VariableType="string" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="ShortNameGAC_ECUHardwareVersionNumber_F17F_Read" GUID="BsVar_80d57684186a4e2f9f0d8897e6fb8002" Value="GAC_ECUHardwareVersionNumber_F17F_Read" VariableType="string" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="VciResultWrite" GUID="BsVar_3f5a206b1b7147a3ac735a134bd6afcd" Value="" VariableType="vciResult" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="VciResultRead" GUID="BsVar_b224894977014621acc5fe2eaa2743e8" Value="" VariableType="vciResult" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="Str_OdxNegtiveResponse" GUID="BsVar_e2af07c9e61e4c5d8450223ce0fe60ba" Value="" VariableType="string" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="Str_empty" GUID="BsVar_3683fffe06ad429c83200f3b1de4845a" Value="" VariableType="string" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="StatStep_CheckSWID" GUID="BsVar_da8c5d5f83d84866bb1bf8a7ebd0d209" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="19" EnglishTitle="Check ECU SWID" ChineseTitle="检查ECU 软件版本号" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="ShortNameFault_Memory_Read_DTC_Extended_data_records_by_DTC_number" GUID="BsVar_d0fde3d985ba48c2925077bcf5ebf2d9" Value="Fault_Memory_Read_DTC_Extended_data_records_by_DTC_number" VariableType="string" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="StatStepReadVIN" GUID="BsVar_cbdbe97bcd7348e3ba53d3bc37f2de61" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="39" EnglishTitle="Read VIN" ChineseTitle="读取VIN" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="Handle" GUID="BsVar_915faf3d28924dcf9538a978ae03feb4" Value="-1" VariableType="int" BaseDataType="int" DefaultValue=""/>
+		<LocalVariable VariableName="StatStep_Read0100" GUID="BsVar_a4c9c15653d0475bbd6e38163cbac559" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="1" EnglishTitle="read 0100failed" ChineseTitle="读取0100失败" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="VciResultID" GUID="BsVar_2562f5d4d5fd457789702ec002f373a6" Value="" VariableType="vciResult" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="StatStep_Check0100" GUID="BsVar_98310f1e46fc40be8b945e537b702ef7" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="25" EnglishTitle="Check 0100" ChineseTitle="检查0100" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="StatStepGAC_ECUSoftwareVersionNumber_F189_Read" GUID="BsVar_d296819c842042bcaae96a2f19c6dfb9" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="48" EnglishTitle="Read SW Number" ChineseTitle="读取软件版本号" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="PDUChancelHandle2" GUID="BsVar_dd0995d22a534adea6429bce901be8c7" Value="-1" VariableType="int" BaseDataType="int" DefaultValue=""/>
+		<LocalVariable VariableName="OdxPositionResponse" GUID="BsVar_77f7216c51f64ab8875aa72f96fda042" Value="None" VariableType="object" BaseDataType="object" DefaultValue=""/>
+		<LocalVariable VariableName="ShortName_Default_Control" GUID="BsVar_667ff351d1ca43f08ec59247e262761d" Value="Default_Control" VariableType="string" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="ShortNameProgramming_Control" GUID="BsVar_0fba36490618464d9dbf7bc288b20d3a" Value="Programming_Control" VariableType="string" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="VciResultHWID" GUID="BsVar_766a3003c02c426c90c47a103c41d721" Value="" VariableType="vciResult" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="StatStepProgramming_Control" GUID="BsVar_3a8c5d4131dd47e6857fb777c210d1a2" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="45" EnglishTitle="Enter Flashing Mode" ChineseTitle="进入刷新模式" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="PDUChancelHandle" GUID="BsVar_bf4d2ca6b105491d9c061869c7b9463e" Value="-1" VariableType="int" BaseDataType="int" DefaultValue=""/>
+		<LocalVariable VariableName="IsCheckSuccessful" GUID="BsVar_93ac8acbdb214d00bee8cda69f770ff9" Value="false" VariableType="bool" BaseDataType="bool" DefaultValue=""/>
+		<LocalVariable VariableName="Time5000" GUID="BsVar_762091ead241498d9e3acdff5c67f5c1" Value="5000" VariableType="int" BaseDataType="int" DefaultValue=""/>
+		<LocalVariable VariableName="TargetReponseStr" GUID="BsVar_c0fdad2d914e4f75a550ca52dc69bb4b" Value="62020401" VariableType="string" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="StatStep_Default_Control" GUID="BsVar_edaffc5d33d9402da1e54e3e70dcaeb2" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="44" EnglishTitle="Enter Default Mode" ChineseTitle="进入默认模式" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="a18_vcu" GUID="BsVar_e94c8f8f3a5d41979c79c05baa040321" Value="a18_vcu" VariableType="string" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="Str_VIN" GUID="BsVar_10ace19827524f52b816436252a7ec9d" Value="LL66GC5C6MB000004" VariableType="string" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="CallOdxResult" GUID="BsVar_1977f2333b1c40949693f4316a1bc225" Value="-1" VariableType="int" BaseDataType="int" DefaultValue=""/>
+		<LocalVariable VariableName="IsHWIDOK" GUID="BsVar_661432ecff66458b9b844ca3c9481a11" Value="false" VariableType="bool" BaseDataType="bool" DefaultValue=""/>
+		<LocalVariable VariableName="StatStepRead0110" GUID="BsVar_89f94854484c4afb9138f79042df3ba9" Value="" VariableType="StatStep" BaseDataType="object" DefaultValue="" ID="36" EnglishTitle="Read 0110" ChineseTitle="读取0110" PrintAtNOK="true" PrintAtOK="false" xsi:type="StatStep"/>
+		<LocalVariable VariableName="Int100" GUID="BsVar_1ec4680d0b71402aafd8a63aaebe2b6a" Value="100" VariableType="int" BaseDataType="int" DefaultValue=""/>
+		<LocalVariable VariableName="EBB" GUID="BsVar_3758e6e73ed24ff8b9a72d60002e4502" Value="" VariableType="ecuDtObj" BaseDataType="object" DefaultValue="" Name="a18_ebb" RequestID="1808" ResponseID="1936" FrameType="0" xsi:type="ecuDtObj"/>
+		<LocalVariable VariableName="VCU" GUID="BsVar_1758e6e73ed24ff8b9a72d60002e4502" Value="" VariableType="ecuDtObj" BaseDataType="object" DefaultValue="" Name="a18_vcu" RequestID="2019" ResponseID="2027" FrameType="0" xsi:type="ecuDtObj"/>
+		<LocalVariable VariableName="vciResult" GUID="BsVar_36913475720c42189d5a8ca3bf094055" Value="" VariableType="vciResult" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="ShortNameExtendedDiagnostic_Control" GUID="BsVar_b383e40e04cd488c8ab5d14fa6043af0" Value="ExtendedDiagnostic_Control" VariableType="string" BaseDataType="string" DefaultValue=""/>
+		<LocalVariable VariableName="DummyLAS" GUID="BsVar_00000000000000000000000000000000" Value="$T" VariableType="LAS" BaseDataType="object" DefaultValue="" LASExpression="$T" xsi:type="LAS"/>
+	</LocalVariables>
+	<Steps>
+		<Step Title="EBB_Init" IsActive="true" StepType="1002" FunctionName="BlankStep" GUID="Stp_e9d3043b8bcc4f7e9799c313087fb17f">
+			<Conditions>
+				<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+					<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+				</Condition>
+				<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+				<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+					<Expression Value=""/>
+				</Condition>
+			</Conditions>
+			<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+			<Steps>
+				<Step Title="PDUOpenChannel" IsActive="true" StepType="131" FunctionName="PDUOpenChannel" GUID="Stp_95e311bca8f948419a49ea342bddbbe4">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="IsSuccess" InOutType="1" Value="IsSuccess" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_0300930036104989919b27e6a4cf2a6b" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_0199c96c2e124d30802f9de57950f1e1"/>
+						<BaseVariable VariableName="PDUChancelHandle" InOutType="1" Value="PDUChancelHandle" VariableType="int" BaseDataType="int" DefaultValue="" GUID="BsVar_f38ec33103cd46038c75a9928860a6ab" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_bf4d2ca6b105491d9c061869c7b9463e"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="StartCom" IsActive="true" StepType="100" FunctionName="StartCom" GUID="Stp_2c336b2f58bd4937acdad2c2075feb30">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="ECU" InOutType="0" Value="EBB" VariableType="ecuDtObj" BaseDataType="object" DefaultValue="" GUID="BsVar_b70abed73d234d53a884d139a414f3d0" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_3758e6e73ed24ff8b9a72d60002e4502"/>
+						<BaseVariable VariableName="StatStepExcute" InOutType="0" Value="StatStep_StartCom" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_b2dd5e3a585f4d8790608be505a1df4d" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_81d58e7888974a2a9f2c97ca47ee2eb0"/>
+						<BaseVariable VariableName="IsExcuteSuccessful" InOutType="1" Value="IsExcuteSuccessful" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_3df60a4f7a3a40ec8a66e9f58c9d2a12" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_b19fd4a221d54c10aa717ed22e1b8538"/>
+						<BaseVariable VariableName="VciResult" InOutType="1" Value="vciResult" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_26bef22016854d1586cadf4a0a9cc175" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_36913475720c42189d5a8ca3bf094055"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="Cancel" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="true" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="BaseStep" IsActive="true" StepType="113" FunctionName="AssemblyCheck" GUID="Stp_e4c11bf6669248a5a43952d648b75428">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="ECU" InOutType="0" Value="EBB" VariableType="ecuDtObj" BaseDataType="object" DefaultValue="" GUID="BsVar_d95c0db1c4e7412d9359c9db8e12f138" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_3758e6e73ed24ff8b9a72d60002e4502"/>
+						<BaseVariable VariableName="StatStepCheckID" InOutType="0" Value="StatStep_CheckID" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_c1a63056892648aa9888ce9d34876c7a" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_14961346f0774738a68015a6f4df6812"/>
+						<BaseVariable VariableName="StatStepCheckSWID" InOutType="0" Value="StatStep_CheckSWID" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_3a43a572e29c4b2790c87352ded9c862" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_da8c5d5f83d84866bb1bf8a7ebd0d209"/>
+						<BaseVariable VariableName="StatStepCheckHWID" InOutType="0" Value="StatStep_CheckHWID" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_fd0d4cb96f3849dda125d56cbc6ec8ed" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_c8333e1057d54b8d98c52367ef848b53"/>
+						<BaseVariable VariableName="ResultID" InOutType="1" Value="ResultID" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_1583277b458546ffaebb0e8e128da72f" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_fe82bec3b7864feb826f3738f14d1a3d"/>
+						<BaseVariable VariableName="ResultSWID" InOutType="1" Value="ResultSWID" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_d1fd2356aff743789c17a5499f8eb58e" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_2814d1cd05d9469c8373750cf280bc7e"/>
+						<BaseVariable VariableName="ResultHWID" InOutType="1" Value="ResultHWID" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_39d19d5aed894317a4addbf65cfea095" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_5a2a97b00af1480682e58ffecba5b155"/>
+						<BaseVariable VariableName="IsIDOK" InOutType="1" Value="IsIDOK" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_91f4eec25f414a5797af0218e4467499" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_e731951bea664696a23bb77c6a198315"/>
+						<BaseVariable VariableName="IsSWIDOK" InOutType="1" Value="IsSWIDOK" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_c8b5a44f61e3469db2d4e5342acb4c0b" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_e10fabca665a482980e6d59bcf599811"/>
+						<BaseVariable VariableName="IsHWIDOK" InOutType="1" Value="IsHWIDOK" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_0328cb72e96544d6a7ba8e46ca4d7f42" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_661432ecff66458b9b844ca3c9481a11"/>
+						<BaseVariable VariableName="VciResultID" InOutType="1" Value="VciResultID" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_01cf93a5b31e4597b1f7b3c93510a79e" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_2562f5d4d5fd457789702ec002f373a6"/>
+						<BaseVariable VariableName="VciResultSWID" InOutType="1" Value="VciResultSWID" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_0ae0da1ac0b6494baddfc117a2da1023" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_10f909a495474c249dd7d654702d644d"/>
+						<BaseVariable VariableName="VciResultHWID" InOutType="1" Value="VciResultHWID" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_6a8fd281fd6d4b41a47cc46fbfe15929" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_766a3003c02c426c90c47a103c41d721"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="BaseStep" IsActive="true" StepType="106" FunctionName="CheckFactoryMode" GUID="Stp_e9774be1f9f142f5b6be24170925f235">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="ECU" InOutType="0" Value="EBB" VariableType="ecuDtObj" BaseDataType="object" DefaultValue="" GUID="BsVar_040ca63d1643434b9c33106d6b4b5161" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_3758e6e73ed24ff8b9a72d60002e4502"/>
+						<BaseVariable VariableName="TargetValue" InOutType="0" Value="Str_00000000" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_518f386a905e4eefb8642d9518e862b8" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_acefc61d59154ecc988ec6b1bd9730a2"/>
+						<BaseVariable VariableName="StatStepRead" InOutType="0" Value="StatStepRead0110" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_9a8f857a1fc740f78f6123ccdd03cb2c" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_89f94854484c4afb9138f79042df3ba9"/>
+						<BaseVariable VariableName="StatStepCheck" InOutType="0" Value="StatStepCheck0110" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_af5195e4ae3c4363b465cecc3fae1256" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_65fc5e025edf4ece81e6fdaf56c793e1"/>
+						<BaseVariable VariableName="IsReadSuccessful" InOutType="1" Value="IsExcuteSuccessful" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_030b578a4da348999e907465d701666b" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_b19fd4a221d54c10aa717ed22e1b8538"/>
+						<BaseVariable VariableName="IsCheckSuccessful" InOutType="1" Value="IsCheckSuccessful" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_02a5884da209453eb22597ca72e8bc02" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_93ac8acbdb214d00bee8cda69f770ff9"/>
+						<BaseVariable VariableName="VciResult" InOutType="1" Value="vciResult" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_1fc8e058677646d9ba9aa2f1c1c2692c" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_36913475720c42189d5a8ca3bf094055"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="BaseStep" IsActive="true" StepType="107" FunctionName="WriteAndCheckConfig" GUID="Stp_b876358e29214c8786643fe30c9df5b4">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="ECU" InOutType="0" Value="EBB" VariableType="ecuDtObj" BaseDataType="object" DefaultValue="" GUID="BsVar_f52d70f862754d4f98e9ab349fd21583" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_3758e6e73ed24ff8b9a72d60002e4502"/>
+						<BaseVariable VariableName="DID" InOutType="0" Value="Str_0100" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_486d4d2fc1d9459f9fd3573b4f5e878c" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_329b3493f50d4acda8ae2581bf368dfa"/>
+						<BaseVariable VariableName="ConfigValue" InOutType="0" Value="Str_empty" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_e7a3874b0caa46b4ac927836652faee3" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_3683fffe06ad429c83200f3b1de4845a"/>
+						<BaseVariable VariableName="StatStepWrite" InOutType="0" Value="StatStep_Write0100" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_813d7d42bcf5498ea90e1f9a62d6e29c" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_49581357fe944c1594a823ee64913304"/>
+						<BaseVariable VariableName="StatStepRead" InOutType="0" Value="StatStep_Read0100" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_99d474c5eddc459a98e2383f517516c3" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_a4c9c15653d0475bbd6e38163cbac559"/>
+						<BaseVariable VariableName="StatStepCheck" InOutType="0" Value="StatStep_Check0100" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_a55f0f813f0f405ea06911f62afc4da1" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_98310f1e46fc40be8b945e537b702ef7"/>
+						<BaseVariable VariableName="IsWriteSuccessful" InOutType="1" Value="IsWriteSuccessful" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_126218af931e4227a25f9501ffcfaafd" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_bea78f15da52486380f1dc5ac5546f6b"/>
+						<BaseVariable VariableName="IsReadSuccessful" InOutType="1" Value="IsReadSuccessful" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_ba75fed61cec44d49bdcd33e6a1f6daa" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_4cedbbbeafee469ba9d26602dcf55414"/>
+						<BaseVariable VariableName="IsCheckSuccessful" InOutType="1" Value="IsCheckSuccessful" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_06fda11eb9e249769da5440060f8258c" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_93ac8acbdb214d00bee8cda69f770ff9"/>
+						<BaseVariable VariableName="VciResultWrite" InOutType="1" Value="VciResultWrite" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_a56db6224e084bcc8620baf8644c0178" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_3f5a206b1b7147a3ac735a134bd6afcd"/>
+						<BaseVariable VariableName="VciResultRead" InOutType="1" Value="VciResultRead" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_508588582c20426580262b049485292f" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_b224894977014621acc5fe2eaa2743e8"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="BaseStep" IsActive="true" StepType="108" FunctionName="CheckConfig" GUID="Stp_238a013c98a64044b20c3f2fe527fd50">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="ECU" InOutType="0" Value="EBB" VariableType="ecuDtObj" BaseDataType="object" DefaultValue="" GUID="BsVar_fe177b6638814a2aa561dcc1a9161ab4" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_3758e6e73ed24ff8b9a72d60002e4502"/>
+						<BaseVariable VariableName="DID" InOutType="0" Value="Str_0100" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_86811899366549a7aa4ab451d1df5455" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_329b3493f50d4acda8ae2581bf368dfa"/>
+						<BaseVariable VariableName="ConfigValue" InOutType="0" Value="Str_empty" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_e8d7c81509274b71af5c98b804be4b0b" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_3683fffe06ad429c83200f3b1de4845a"/>
+						<BaseVariable VariableName="StatStepRead" InOutType="0" Value="StatStep_Read0100" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_d4aa05d6ad4e4dcdb1a6835555c8e1bf" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_a4c9c15653d0475bbd6e38163cbac559"/>
+						<BaseVariable VariableName="StatStepCheck" InOutType="0" Value="StatStep_Check0100" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_05a3d71318ae4d66a7106440729b9d69" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_98310f1e46fc40be8b945e537b702ef7"/>
+						<BaseVariable VariableName="IsReadSuccessful" InOutType="1" Value="IsReadSuccessful" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_555773f7d0354be8b6d0de2299913203" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_4cedbbbeafee469ba9d26602dcf55414"/>
+						<BaseVariable VariableName="IsCheckSuccessful" InOutType="1" Value="IsCheckSuccessful" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_b4ff87f4e10c47b6b2ecf331b7b10390" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_93ac8acbdb214d00bee8cda69f770ff9"/>
+						<BaseVariable VariableName="VciResultRead" InOutType="1" Value="VciResultRead" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_2bbaa9ffc49849f490804b9c305e4af5" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_b224894977014621acc5fe2eaa2743e8"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="BaseStep" IsActive="true" StepType="111" FunctionName="WriteAndCheckVIN" GUID="Stp_df0a363a30a74ee194f7b19cf246575a">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="ECU" InOutType="0" Value="EBB" VariableType="ecuDtObj" BaseDataType="object" DefaultValue="" GUID="BsVar_ebb13a8eae7b4782aa595fae664016e3" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_3758e6e73ed24ff8b9a72d60002e4502"/>
+						<BaseVariable VariableName="VinValue" InOutType="0" Value="Str_VIN" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_29131fbe30de446ca25775956a31c627" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_10ace19827524f52b816436252a7ec9d"/>
+						<BaseVariable VariableName="StatStepWrite" InOutType="0" Value="StatStepWriteVIN" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_45b6bc78a6914d148c547f4faf6e7f1b" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_0928b0aed08648c58992f6088d2df64a"/>
+						<BaseVariable VariableName="StatStepRead" InOutType="0" Value="StatStepReadVIN" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_65ce2d7ce2634851a6a92624f02569ad" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_cbdbe97bcd7348e3ba53d3bc37f2de61"/>
+						<BaseVariable VariableName="StatStepCheck" InOutType="0" Value="StatStepCheck0110" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_9eb0cac5a67a4a83abcd907229f77600" IsByBinding="true" IsOptional="false" BindLocalVarGUID=""/>
+						<BaseVariable VariableName="IsWriteSuccessful" InOutType="1" Value="IsWriteSuccessful" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_71d83d4e9ccb47d38017b56907f8125c" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_bea78f15da52486380f1dc5ac5546f6b"/>
+						<BaseVariable VariableName="IsReadSuccessful" InOutType="1" Value="IsReadSuccessful" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_1730f9ef5ae4428c8865f16f7d848c39" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_4cedbbbeafee469ba9d26602dcf55414"/>
+						<BaseVariable VariableName="IsCheckSuccessful" InOutType="1" Value="IsCheckSuccessful" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_34f7117cba3048bdbc7687e11235752d" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_93ac8acbdb214d00bee8cda69f770ff9"/>
+						<BaseVariable VariableName="VciResultWrite" InOutType="1" Value="VciResultWrite" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_c7a570b3f5b34a61ad9fefd3d0939d15" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_3f5a206b1b7147a3ac735a134bd6afcd"/>
+						<BaseVariable VariableName="VciResultRead" InOutType="1" Value="VciResultRead" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_341eb2f986554d71aea3d5e33cbf3db8" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_b224894977014621acc5fe2eaa2743e8"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="BaseStep" IsActive="true" StepType="112" FunctionName="CheckVIN" GUID="Stp_7b9f6035520b47d7b8e379f6e4da91e0">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="ECU" InOutType="0" Value="EBB" VariableType="ecuDtObj" BaseDataType="object" DefaultValue="" GUID="BsVar_8948d831b2e94f6ab173e1cad3ac5d2c" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_3758e6e73ed24ff8b9a72d60002e4502"/>
+						<BaseVariable VariableName="VinValue" InOutType="0" Value="Str_VIN" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_4fd6c69bfe6342d68bebf914fa111cee" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_10ace19827524f52b816436252a7ec9d"/>
+						<BaseVariable VariableName="StatStepRead" InOutType="0" Value="StatStepReadVIN" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_0462ac7ff4d044508d94cb37a0f6d9ac" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_cbdbe97bcd7348e3ba53d3bc37f2de61"/>
+						<BaseVariable VariableName="StatStepCheck" InOutType="0" Value="StatStepCheckVIN" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_f3ff579e66da4dcd82f8c85f94c824f9" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_673485934e374a4abebeb26b09a20183"/>
+						<BaseVariable VariableName="IsReadSuccessful" InOutType="1" Value="IsReadSuccessful" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_f98155977a544e6cba8fad2251724721" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_4cedbbbeafee469ba9d26602dcf55414"/>
+						<BaseVariable VariableName="IsCheckSuccessful" InOutType="1" Value="IsCheckSuccessful" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_6dcda51b79f64eb6b96725b9a2ad858b" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_93ac8acbdb214d00bee8cda69f770ff9"/>
+						<BaseVariable VariableName="VciResultRead" InOutType="1" Value="VciResultRead" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_3673d109ff284b2c9b3a1e3666ca8e27" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_b224894977014621acc5fe2eaa2743e8"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="BaseStep" IsActive="true" StepType="123" FunctionName="PeriodicExcuteServiceAndCheckResponse" GUID="Stp_9c8df3642cbc40eeabcdf7a75260d64a">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="ECU" InOutType="0" Value="EBB" VariableType="ecuDtObj" BaseDataType="object" DefaultValue="" GUID="BsVar_cdd5e822ac2541e597948be04a0f9689" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_3758e6e73ed24ff8b9a72d60002e4502"/>
+						<BaseVariable VariableName="RequestString" InOutType="0" Value="RequestStr" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_d4ac761fc49a4b1b88be937a88159ba1" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_7118a16aebf54ed4a280f5b3e41765f5"/>
+						<BaseVariable VariableName="TargetResponseString" InOutType="0" Value="TargetReponseStr" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_f3d48380ec914e36bc91ea8747e38d0e" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_c0fdad2d914e4f75a550ca52dc69bb4b"/>
+						<BaseVariable VariableName="TimeOutMillionSeconds" InOutType="0" Value="Time5000" VariableType="int" BaseDataType="int" DefaultValue="" GUID="BsVar_c7590ba9896a4ca5ba78dfef11dda71d" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_762091ead241498d9e3acdff5c67f5c1"/>
+						<BaseVariable VariableName="TimeGapMillionSeconds" InOutType="0" Value="Time100" VariableType="int" BaseDataType="int" DefaultValue="" GUID="BsVar_6d61817a3984418488f8a228fcf4bc40" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_d3c45d27772d404cb84c784ceae99c25"/>
+						<BaseVariable VariableName="MaximumTimesNOK" InOutType="0" Value="Int100" VariableType="int" BaseDataType="int" DefaultValue="" GUID="BsVar_4e6d471082e845a9835fee5b1b64ec84" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_1ec4680d0b71402aafd8a63aaebe2b6a"/>
+						<BaseVariable VariableName="MinimumTimesOK" InOutType="0" Value="Int3" VariableType="int" BaseDataType="int" DefaultValue="" GUID="BsVar_2c2c122796ee4fd5a289416ab970b3ae" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_96ee796f07ef4114b0f0a68e0c77c337"/>
+						<BaseVariable VariableName="DlgHandler" InOutType="0" Value="NoneObject" VariableType="object" BaseDataType="object" DefaultValue="" GUID="BsVar_08e2f73d4cce4ce78748a96c5a1be027" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_76d9c513371746e69cc3d11b21f8da2e"/>
+						<BaseVariable VariableName="UserInfo" InOutType="0" Value="Str_empty" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_9af33336c93349f896662de31ec2aec4" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_3683fffe06ad429c83200f3b1de4845a"/>
+						<BaseVariable VariableName="StatStepExcute" InOutType="0" Value="StatStepRead0204" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_98270904c95a43ffb82b02b0955908c4" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_59a2a0c41e984624b257a5092713ca18"/>
+						<BaseVariable VariableName="StatStepCheck" InOutType="0" Value="StatStepCheck0204" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_d77480f6407948ab8a52ba876b732424" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_5249bfee5eba4445815f857d30fa4fe4"/>
+						<BaseVariable VariableName="IsExcuteSuccessful" InOutType="1" Value="IsExcuteSuccessful" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_8578725a8d834f5b8cc94bf326df6a78" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_b19fd4a221d54c10aa717ed22e1b8538"/>
+						<BaseVariable VariableName="IsCheckSuccessful" InOutType="1" Value="IsCheckSuccessful" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_5e45f4ef2fa74547a0d33c00447ef6a4" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_93ac8acbdb214d00bee8cda69f770ff9"/>
+						<BaseVariable VariableName="VciResult" InOutType="1" Value="vciResult" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_5e997eecd06040f3ade63000bcd4b519" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_36913475720c42189d5a8ca3bf094055"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="BaseStep" IsActive="true" StepType="103" FunctionName="ClearDTC" GUID="Stp_0d180acab46e4fbfb091fb27aaab7dcf">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="ECU" InOutType="0" Value="EBB" VariableType="ecuDtObj" BaseDataType="object" DefaultValue="" GUID="BsVar_4461291926644dd68180a7fefb8a722d" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_3758e6e73ed24ff8b9a72d60002e4502"/>
+						<BaseVariable VariableName="StatStepExcute" InOutType="0" Value="StatStepClearDTC" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_0c2d04f09ad3470596f29853705f1890" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_ce36e097aebe449b80da36826b8b51aa"/>
+						<BaseVariable VariableName="IsExcuteSuccessful" InOutType="1" Value="IsExcuteSuccessful" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_ddd643f4f58d4590b0b1bb46a5a5f22d" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_b19fd4a221d54c10aa717ed22e1b8538"/>
+						<BaseVariable VariableName="VciResult" InOutType="1" Value="vciResult" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_81d68774319545b9a5c21b5decc6b77c" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_36913475720c42189d5a8ca3bf094055"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="PDUCloseChannel" IsActive="true" StepType="132" FunctionName="PDUCloseChannel" GUID="Stp_032c7bdcd628438b8f05cec52eee12b9">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="PDUChancelHandle" InOutType="0" Value="PDUChancelHandle" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_0a94066d288749acb6c6736150800fa6" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_bf4d2ca6b105491d9c061869c7b9463e"/>
+						<BaseVariable VariableName="IsSuccess" InOutType="1" Value="IsSuccess" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_271473cf8752465c8f234ef28b6acb41" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_0199c96c2e124d30802f9de57950f1e1"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+			</Steps>
+		</Step>
+		<Step Title="VCU_Init" IsActive="true" StepType="1002" FunctionName="BlankStep" GUID="Stp_d2ba0b04cb644dde905160cb45711bb8">
+			<Conditions>
+				<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+					<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+				</Condition>
+				<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+				<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+					<Expression Value=""/>
+				</Condition>
+			</Conditions>
+			<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+			<Steps>
+				<Step Title="PDUOpenChannel" IsActive="true" StepType="131" FunctionName="PDUOpenChannel" GUID="Stp_9ded88f64f9d4993baa88fd1876b84f9">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="IsSuccess" InOutType="1" Value="IsSuccess" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_5c76e06b511b4026a3ae42f4cf351f05" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_0199c96c2e124d30802f9de57950f1e1"/>
+						<BaseVariable VariableName="PDUChancelHandle" InOutType="1" Value="PDUChancelHandle2" VariableType="int" BaseDataType="int" DefaultValue="" GUID="BsVar_79d20d7faa044f7e818af4ee67831018" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_dd0995d22a534adea6429bce901be8c7"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="LoadOdx" IsActive="true" StepType="5001" FunctionName="LoadOdx" GUID="Stp_b10f031d343c4b32bfee7f54319f7659">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="OdxFileName" InOutType="0" Value="a18_vcu" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_7361ff17b5664835b954d448343eaf2b" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_e94c8f8f3a5d41979c79c05baa040321"/>
+						<!-- <BaseVariable VariableName="ODXServerList" InOutType="0" Value="ODXServerList" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_7361ff17b5664835b954d448343eaf3b" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_e94c8f8f3a5d41979c79c05baa040329"/> -->
+						<BaseVariable VariableName="Result" InOutType="1" Value="Result" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_82dc9ffbbdca4c1d92bbbdaa0b8d0fe5" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_532aa135acfd42e692c061492b3b4d05"/>
+						<BaseVariable VariableName="Handle" InOutType="1" Value="Handle" VariableType="int" BaseDataType="int" DefaultValue="" GUID="BsVar_7e1e95812534448abb348a9a60fe11ca" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_915faf3d28924dcf9538a978ae03feb4"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="BaseStep" IsActive="true" StepType="127" FunctionName="CallOdxServiceByShortName" GUID="Stp_206fdae915514c5a81dd0d6c5facba8d">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="ECU" InOutType="0" Value="VCU" VariableType="ecuDtObj" BaseDataType="object" DefaultValue="" GUID="BsVar_a170076d36ce48cab4337d661979dbba" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_1758e6e73ed24ff8b9a72d60002e4502"/>
+						<BaseVariable VariableName="OdxServiceShortName" InOutType="0" Value="ShortName_Default_Control" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_f43b2800a3124d719602a906084fc3e8" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_667ff351d1ca43f08ec59247e262761d"/>
+						<BaseVariable VariableName="InParam" InOutType="0" Value="NoneObject" VariableType="object" BaseDataType="object" DefaultValue="" GUID="BsVar_124c7075bd5d43dea070f878a3f1979d" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_76d9c513371746e69cc3d11b21f8da2e"/>
+						<BaseVariable VariableName="StatStep" InOutType="0" Value="StatStep_Default_Control" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_6159591b4d0f4036bf8fe9d63a99568d" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_edaffc5d33d9402da1e54e3e70dcaeb2"/>
+						<BaseVariable VariableName="Result" InOutType="1" Value="CallOdxResult" VariableType="int" BaseDataType="int" DefaultValue="" GUID="BsVar_a34711f0755d4ee9a942f091373fb9cd" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_1977f2333b1c40949693f4316a1bc225"/>
+						<BaseVariable VariableName="PositiveResponseParam" InOutType="1" Value="OdxPositionResponse" VariableType="object" BaseDataType="object" DefaultValue="" GUID="BsVar_a86eb61b499e484da8622700d90fce87" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_77f7216c51f64ab8875aa72f96fda042"/>
+						<BaseVariable VariableName="NegtiveResponseParam" InOutType="1" Value="Str_OdxNegtiveResponse" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_601a886a5cde4466a02a9a7bbda67afd" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_e2af07c9e61e4c5d8450223ce0fe60ba"/>
+						<BaseVariable VariableName="VciResult" InOutType="1" Value="vciResult" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_bb5ead54d1e243ff9e623fe973e19796" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_36913475720c42189d5a8ca3bf094055"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="BaseStep" IsActive="true" StepType="127" FunctionName="CallOdxServiceByShortName" GUID="Stp_acd2f856f44f403bafebe3cc2b0afe5b">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="ECU" InOutType="0" Value="VCU" VariableType="ecuDtObj" BaseDataType="object" DefaultValue="" GUID="BsVar_86c44c4c12094ab6aa2ca3e2fcda6809" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_1758e6e73ed24ff8b9a72d60002e4502"/>
+						<BaseVariable VariableName="OdxServiceShortName" InOutType="0" Value="ShortNameProgramming_Control" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_59de6d2a6d854b92a954ae14f5f312f3" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_0fba36490618464d9dbf7bc288b20d3a"/>
+						<BaseVariable VariableName="InParam" InOutType="0" Value="NoneObject" VariableType="object" BaseDataType="object" DefaultValue="" GUID="BsVar_b9c0e19b8ea44c75ad991e6ffebfccb0" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_76d9c513371746e69cc3d11b21f8da2e"/>
+						<BaseVariable VariableName="StatStep" InOutType="0" Value="StatStepProgramming_Control" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_3e1cc53ea05149eb9418bc9b382ac361" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_3a8c5d4131dd47e6857fb777c210d1a2"/>
+						<BaseVariable VariableName="Result" InOutType="1" Value="CallOdxResult" VariableType="int" BaseDataType="int" DefaultValue="" GUID="BsVar_e02a047737984f62a0c6554cefb4b07d" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_1977f2333b1c40949693f4316a1bc225"/>
+						<BaseVariable VariableName="PositiveResponseParam" InOutType="1" Value="OdxPositionResponse" VariableType="object" BaseDataType="object" DefaultValue="" GUID="BsVar_147be9c073b041059f5496d2d7c61c19" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_77f7216c51f64ab8875aa72f96fda042"/>
+						<BaseVariable VariableName="NegtiveResponseParam" InOutType="1" Value="Str_OdxNegtiveResponse" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_9822c3861f08466eb0e8dffee68a95d7" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_e2af07c9e61e4c5d8450223ce0fe60ba"/>
+						<BaseVariable VariableName="VciResult" InOutType="1" Value="vciResult" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_16fd7278ba68480da90f3c6c3b447ee9" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_36913475720c42189d5a8ca3bf094055"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="BaseStep" IsActive="true" StepType="127" FunctionName="CallOdxServiceByShortName" GUID="Stp_e9daae975deb463e9d571b7e6cf6696f">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="ECU" InOutType="0" Value="VCU" VariableType="ecuDtObj" BaseDataType="object" DefaultValue="" GUID="BsVar_5a62864189dd486fac9501e58ec858cf" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_1758e6e73ed24ff8b9a72d60002e4502"/>
+						<BaseVariable VariableName="OdxServiceShortName" InOutType="0" Value="ShortNameExtendedDiagnostic_Control" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_93c21574ecd8449581c261ab65f708d5" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_b383e40e04cd488c8ab5d14fa6043af0"/>
+						<BaseVariable VariableName="InParam" InOutType="0" Value="NoneObject" VariableType="object" BaseDataType="object" DefaultValue="" GUID="BsVar_29b36fe6986b465db3678481abe56a5b" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_76d9c513371746e69cc3d11b21f8da2e"/>
+						<BaseVariable VariableName="StatStep" InOutType="0" Value="StatStepExtendedDiagnostic_Control" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_0b190a333d43445f8dd779d8a586c200" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_26a2c9d61cdb45b58d33e6d34603fa7d"/>
+						<BaseVariable VariableName="Result" InOutType="1" Value="CallOdxResult" VariableType="int" BaseDataType="int" DefaultValue="" GUID="BsVar_6ab1cf07fc3843a19e222130a422307b" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_1977f2333b1c40949693f4316a1bc225"/>
+						<BaseVariable VariableName="PositiveResponseParam" InOutType="1" Value="OdxPositionResponse" VariableType="object" BaseDataType="object" DefaultValue="" GUID="BsVar_29d109f2df05410cad6e3bfb8aefd10f" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_77f7216c51f64ab8875aa72f96fda042"/>
+						<BaseVariable VariableName="NegtiveResponseParam" InOutType="1" Value="Str_OdxNegtiveResponse" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_fa934e290fdd4fb99e7fa55fb3f28c6b" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_e2af07c9e61e4c5d8450223ce0fe60ba"/>
+						<BaseVariable VariableName="VciResult" InOutType="1" Value="vciResult" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_0b4003675aab4c2989186981f9f8ba83" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_36913475720c42189d5a8ca3bf094055"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="BaseStep" IsActive="true" StepType="127" FunctionName="CallOdxServiceByShortName" GUID="Stp_529c43ed8c67471ebb5918bace38ca31">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="ECU" InOutType="0" Value="VCU" VariableType="ecuDtObj" BaseDataType="object" DefaultValue="" GUID="BsVar_e5df725bd2834d38a8053f99a2e5568d" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_1758e6e73ed24ff8b9a72d60002e4502"/>
+						<BaseVariable VariableName="OdxServiceShortName" InOutType="0" Value="ShortNameGAC_SparePartNumberDataIdentifier_F187_Read" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_9ac95012ebe944b3bd147a7034cea37b" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_66259dd5ccdf48b4a28352e63272a740"/>
+						<BaseVariable VariableName="InParam" InOutType="0" Value="NoneObject" VariableType="object" BaseDataType="object" DefaultValue="" GUID="BsVar_35c8e24ef2814573b88b40f9f87fab5d" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_76d9c513371746e69cc3d11b21f8da2e"/>
+						<BaseVariable VariableName="StatStep" InOutType="0" Value="StatStepGAC_SparePartNumberDataIdentifier_F187_Read" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_8f33059220da44558084c5eb758dd403" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_6499674ca9394315936a63e62bb1ba2f"/>
+						<BaseVariable VariableName="Result" InOutType="1" Value="CallOdxResult" VariableType="int" BaseDataType="int" DefaultValue="" GUID="BsVar_b9f31357175446b3848feca4067e9469" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_1977f2333b1c40949693f4316a1bc225"/>
+						<BaseVariable VariableName="PositiveResponseParam" InOutType="1" Value="OdxPositionResponse" VariableType="object" BaseDataType="object" DefaultValue="" GUID="BsVar_757fce5018e743c8837d8cf790f55aef" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_77f7216c51f64ab8875aa72f96fda042"/>
+						<BaseVariable VariableName="NegtiveResponseParam" InOutType="1" Value="Str_OdxNegtiveResponse" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_66503483930146259f86413fad48df1d" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_e2af07c9e61e4c5d8450223ce0fe60ba"/>
+						<BaseVariable VariableName="VciResult" InOutType="1" Value="vciResult" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_ed7b353647d9456b83dd5e6a600346dd" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_36913475720c42189d5a8ca3bf094055"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="BaseStep" IsActive="true" StepType="127" FunctionName="CallOdxServiceByShortName" GUID="Stp_0fc3990eb5d84a3a864140173cfd3e6a">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="ECU" InOutType="0" Value="VCU" VariableType="ecuDtObj" BaseDataType="object" DefaultValue="" GUID="BsVar_0e30fcb3fe9a41048e2da03938f9127b" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_1758e6e73ed24ff8b9a72d60002e4502"/>
+						<BaseVariable VariableName="OdxServiceShortName" InOutType="0" Value="ShortNameGAC_ECUSoftwareVersionNumber_F189_Read" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_29658f1884cc4ba086f9c04608e0c300" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_d15c1830e43a4ba99623add2d560fcc7"/>
+						<BaseVariable VariableName="InParam" InOutType="0" Value="NoneObject" VariableType="object" BaseDataType="object" DefaultValue="" GUID="BsVar_46bf5be9ad054aa4bb1a2c75a304de59" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_76d9c513371746e69cc3d11b21f8da2e"/>
+						<BaseVariable VariableName="StatStep" InOutType="0" Value="StatStepGAC_ECUSoftwareVersionNumber_F189_Read" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_93ade8aff0924d6f95e57fab8b7bb5d7" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_d296819c842042bcaae96a2f19c6dfb9"/>
+						<BaseVariable VariableName="Result" InOutType="1" Value="CallOdxResult" VariableType="int" BaseDataType="int" DefaultValue="" GUID="BsVar_c674363198a348b193a66bd14cb9cc95" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_1977f2333b1c40949693f4316a1bc225"/>
+						<BaseVariable VariableName="PositiveResponseParam" InOutType="1" Value="OdxPositionResponse" VariableType="object" BaseDataType="object" DefaultValue="" GUID="BsVar_97f82e08351848c9b14641d7746dea4d" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_77f7216c51f64ab8875aa72f96fda042"/>
+						<BaseVariable VariableName="NegtiveResponseParam" InOutType="1" Value="Str_OdxNegtiveResponse" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_fe99fd25998e42979b28cce3b0eb7187" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_e2af07c9e61e4c5d8450223ce0fe60ba"/>
+						<BaseVariable VariableName="VciResult" InOutType="1" Value="vciResult" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_42fa7df252174c9cac0a373f9113e903" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_36913475720c42189d5a8ca3bf094055"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="BaseStep" IsActive="true" StepType="127" FunctionName="CallOdxServiceByShortName" GUID="Stp_2c524b95e4f440ea90d076563abddee0">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="ECU" InOutType="0" Value="VCU" VariableType="ecuDtObj" BaseDataType="object" DefaultValue="" GUID="BsVar_2700914f30fe4911a544313ea772bb5e" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_1758e6e73ed24ff8b9a72d60002e4502"/>
+						<BaseVariable VariableName="OdxServiceShortName" InOutType="0" Value="ShortNameGAC_ECUHardwareVersionNumber_F17F_Read" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_2ee95bb71b5240e380149c925ca1a516" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_80d57684186a4e2f9f0d8897e6fb8002"/>
+						<BaseVariable VariableName="InParam" InOutType="0" Value="NoneObject" VariableType="object" BaseDataType="object" DefaultValue="" GUID="BsVar_2df0d7f4bcba499b96ecf9ab60212459" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_76d9c513371746e69cc3d11b21f8da2e"/>
+						<BaseVariable VariableName="StatStep" InOutType="0" Value="StatStepGAC_ECUHardwareVersionNumber_F17F_Read" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_024d95819f2c4789b4bceaf81c6d4c83" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_4bb7aa158132496483a4b9bf51cebcda"/>
+						<BaseVariable VariableName="Result" InOutType="1" Value="CallOdxResult" VariableType="int" BaseDataType="int" DefaultValue="" GUID="BsVar_7b4c120389b84fc99374585eebee12be" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_1977f2333b1c40949693f4316a1bc225"/>
+						<BaseVariable VariableName="PositiveResponseParam" InOutType="1" Value="OdxPositionResponse" VariableType="object" BaseDataType="object" DefaultValue="" GUID="BsVar_ecdaa84ab483457c85be4e67e2237da3" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_77f7216c51f64ab8875aa72f96fda042"/>
+						<BaseVariable VariableName="NegtiveResponseParam" InOutType="1" Value="Str_OdxNegtiveResponse" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_a0ef3d8a86a74a2eb2cc904fc139d757" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_e2af07c9e61e4c5d8450223ce0fe60ba"/>
+						<BaseVariable VariableName="VciResult" InOutType="1" Value="vciResult" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_691aeec5299041ed9c2f832c545b5732" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_36913475720c42189d5a8ca3bf094055"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="BaseStep" IsActive="true" StepType="127" FunctionName="CallOdxServiceByShortName" GUID="Stp_2b82800c7ac34473b6a29cadfe48a293">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="ECU" InOutType="0" Value="VCU" VariableType="ecuDtObj" BaseDataType="object" DefaultValue="" GUID="BsVar_2bd742dd519d4ca28bf3ea26dac486d8" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_1758e6e73ed24ff8b9a72d60002e4502"/>
+						<BaseVariable VariableName="OdxServiceShortName" InOutType="0" Value="ShortNameFault_Memory_Read_DTC_Extended_data_records_by_DTC_number" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_c21daebe034b43138b6804818a6bee85" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_d0fde3d985ba48c2925077bcf5ebf2d9"/>
+						<BaseVariable VariableName="InParam" InOutType="0" Value="dict1" VariableType="object" BaseDataType="object" DefaultValue="" GUID="BsVar_ec463712f1e74d02b2ef0276cab7fe37" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_559c0f7bde8f49aa981a1b651201749c"/>
+						<BaseVariable VariableName="StatStep" InOutType="0" Value="StatStepRead_DTC_Extended_data" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_12439af4499243f69f25ff99b851b4f3" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_92eda761c1ad492eac8d52b31ebdb4d8"/>
+						<BaseVariable VariableName="Result" InOutType="1" Value="CallOdxResult" VariableType="int" BaseDataType="int" DefaultValue="" GUID="BsVar_551f38c2c4d04142a88ab83a5a18a383" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_1977f2333b1c40949693f4316a1bc225"/>
+						<BaseVariable VariableName="PositiveResponseParam" InOutType="1" Value="OdxPositionResponse" VariableType="object" BaseDataType="object" DefaultValue="" GUID="BsVar_ef2a1c8826a3429b865970bb4533a1e1" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_77f7216c51f64ab8875aa72f96fda042"/>
+						<BaseVariable VariableName="NegtiveResponseParam" InOutType="1" Value="Str_OdxNegtiveResponse" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_c31421f735f0420db5afb3293dd92119" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_e2af07c9e61e4c5d8450223ce0fe60ba"/>
+						<BaseVariable VariableName="VciResult" InOutType="1" Value="vciResult" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_3a87abc3b8034f2599c51bdfbfca0d5f" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_36913475720c42189d5a8ca3bf094055"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="BaseStep" IsActive="true" StepType="127" FunctionName="CallOdxServiceByShortName" GUID="Stp_b95b00c754f14830970815f798196be1">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="ECU" InOutType="0" Value="VCU" VariableType="ecuDtObj" BaseDataType="object" DefaultValue="" GUID="BsVar_98dd663e545a446ebe6ef6a7a077e7cd" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_1758e6e73ed24ff8b9a72d60002e4502"/>
+						<BaseVariable VariableName="OdxServiceShortName" InOutType="0" Value="ShortNameFault_Memory_Read_Snapshot_record_by_DTC_number" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_3a5366aba9b5448d986c4d11d7099a1a" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_c8f50e0259074d5e9ae55aaef1dfbf14"/>
+						<BaseVariable VariableName="InParam" InOutType="0" Value="dict2" VariableType="object" BaseDataType="object" DefaultValue="" GUID="BsVar_3cfa7b154cfb4e3caa695b22c63125da" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_17591b7b59b640ef8bcf942a680e4af5"/>
+						<BaseVariable VariableName="StatStep" InOutType="0" Value="StatStepRead_DTC_Extended_data" VariableType="StatStep" BaseDataType="object" DefaultValue="" GUID="BsVar_44261770d53c472285915f2e6a60d395" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_92eda761c1ad492eac8d52b31ebdb4d8"/>
+						<BaseVariable VariableName="Result" InOutType="1" Value="CallOdxResult" VariableType="int" BaseDataType="int" DefaultValue="" GUID="BsVar_24c73aaa67d84446bc3f42faab24dfc0" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_1977f2333b1c40949693f4316a1bc225"/>
+						<BaseVariable VariableName="PositiveResponseParam" InOutType="1" Value="OdxPositionResponse" VariableType="object" BaseDataType="object" DefaultValue="" GUID="BsVar_75239e55c4fb414fb89ee200ca1d8083" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_77f7216c51f64ab8875aa72f96fda042"/>
+						<BaseVariable VariableName="NegtiveResponseParam" InOutType="1" Value="Str_OdxNegtiveResponse" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_774d259ff18e4544a1fe179a56927e7a" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_e2af07c9e61e4c5d8450223ce0fe60ba"/>
+						<BaseVariable VariableName="VciResult" InOutType="1" Value="vciResult" VariableType="vciResult" BaseDataType="string" DefaultValue="" GUID="BsVar_b428a8f2b5624309ac973332085d7946" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_36913475720c42189d5a8ca3bf094055"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="UnloadOdx" IsActive="true" StepType="5002" FunctionName="UnloadOdx" GUID="Stp_98094e14b5b64abfa036d292301c7c52">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="Handle" InOutType="0" Value="Handle" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_f5204815fbaa4afeb93180ad9bed16c3" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_915faf3d28924dcf9538a978ae03feb4"/>
+						<BaseVariable VariableName="Result" InOutType="1" Value="Result" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_b25caf2b70fa468981d5328fc66494c7" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_532aa135acfd42e692c061492b3b4d05"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+				<Step Title="PDUCloseChannel" IsActive="true" StepType="132" FunctionName="PDUCloseChannel" GUID="Stp_742c5d324c2e4429b456a7c15e5ed5bc">
+					<Conditions>
+						<Condition Type="LAS" xsi:type="LASCondition" IsActive="false">
+							<LASRef LasId="BsVar_00000000000000000000000000000000"/>
+						</Condition>
+						<Condition Type="PreviousResult" xsi:type="PreviousResultCondition" PreviousResult="OK" ExcuteAt="Always" IsActive="false"/>
+						<Condition Type="Programtic" xsi:type="ProgramticCondition" IsActive="false" ExcuteAt="Always">
+							<Expression Value=""/>
+						</Condition>
+					</Conditions>
+					<BaseVariables>
+						<BaseVariable VariableName="PDUChancelHandle" InOutType="0" Value="PDUChancelHandle2" VariableType="string" BaseDataType="string" DefaultValue="" GUID="BsVar_22a8ced92420419bb7756cb0b2a4aba2" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_dd0995d22a534adea6429bce901be8c7"/>
+						<BaseVariable VariableName="IsSuccess" InOutType="1" Value="IsSuccess" VariableType="bool" BaseDataType="bool" DefaultValue="" GUID="BsVar_37a4d7b8c52a47b9a2d467d63ba7b4e6" IsByBinding="true" IsOptional="false" BindLocalVarGUID="BsVar_0199c96c2e124d30802f9de57950f1e1"/>
+					</BaseVariables>
+					<Assement IsActive="true" Action="None" IsAssmentAtOKEnable="false" IsAssmentAtNOKEnable="false" IsAssmentAtAbortEnable="false" IsAssmentAtProgramaticEnable="false" ProgramaticAssement=""/>
+				</Step>
+			</Steps>
+		</Step>
+	</Steps>
+</Procedure>

@@ -1,0 +1,58 @@
+<PROJECT>
+  <LASLIST>
+    <LASCODEPAIR las="$K703" code="01" explaination="电动尾翼" />
+    <LASCODEPAIR las="$PE05" code="02" explaination="低压热泵空调" />
+    <LASCODEPAIR las="$AX0$2" code="03" explaination="235/50R18" />
+    <LASCODEPAIR las="$EL10" code="04" explaination="23喇叭" />
+    <LASCODEPAIR las="$EL06" code="05" explaination="12喇叭" />
+    <LASCODEPAIR las="$IU02" code="06" explaination="注意力警示辅助系统DMS" />
+    <LASCODEPAIR las="$J402" code="07" explaination="座舱监控系统OMS" />
+    <LASCODEPAIR las="$QZ02" code="08" explaination="L2++Lite" />
+    <LASCODEPAIR las="$QZ03" code="09" explaination="L2++Base" />
+    <LASCODEPAIR las="$MM02" code="0A" explaination="手机无线充电" />
+    <LASCODEPAIR las="$GP02" code="0B" explaination="前后门玻璃一键升降带防夹" />
+    <LASCODEPAIR las="$H303" code="0C" explaination="电释放门" />
+    <LASCODEPAIR las="$QT03" code="0D" explaination="旋翼门" />
+    <LASCODEPAIR las="$CS02" code="0E" explaination="自动大灯" />
+    <LASCODEPAIR las="$LK01" code="0F" explaination="前大灯光线高度调节手动" />
+    <LASCODEPAIR las="$CU02" code="10" explaination="前大灯延时关闭功能" />
+    <LASCODEPAIR las="$DH03" code="11" explaination="智能氛围灯" />
+    <LASCODEPAIR las="$CP04" code="12" explaination="LED大灯带灯语" />
+    <LASCODEPAIR las="$FG04" code="13" explaination="驾驶员座椅8向电动调节" />
+    <LASCODEPAIR las="$FM02" code="14" explaination="副驾驶员座椅4向电动调节" />
+    <LASCODEPAIR las="$FM03" code="15" explaination="副驾驶员座椅6向电动调节" />
+    <LASCODEPAIR las="$FJ02" code="16" explaination="驾驶员座椅记忆" />
+    <LASCODEPAIR las="$FJ04" code="17" explaination="前排座椅记忆" />
+    <LASCODEPAIR las="$FH02" code="18" explaination="驾驶员座椅4向腰靠调节" />
+    <LASCODEPAIR las="$FK03" code="19" explaination="前排座椅通风" />
+    <LASCODEPAIR las="$FI03" code="1A" explaination="前排座椅加热" />
+    <LASCODEPAIR las="$DR02" code="1B" explaination="电动折叠外后视镜" />
+    <LASCODEPAIR las="$DN02" code="1C" explaination="内后视镜自动防眩目" />
+    <LASCODEPAIR las="$NV02" code="1D" explaination="香氛系统" />
+    <LASCODEPAIR las="$R302" code="1E" explaination="一键超跑模式开关" />
+    <LASCODEPAIR las="$AI$03" code="1F" explaination="雨量感应雨刮器" />
+    <LASCODEPAIR las="$E805" code="20" explaination="NFC钥匙" />
+    <LASCODEPAIR las="$A802" code="21" explaination="ETC" />
+    <LASCODEPAIR las="$QV02" code="22" explaination="固定卡钳" />
+    <LASCODEPAIR las="$CG02" code="23" explaination="电子式驻车EPB" />
+    <LASCODEPAIR las="$CI04" code="24" explaination="胎压监测（直接式）" />
+    <LASCODEPAIR las="$QY02" code="25" explaination="换电" />
+    <LASCODEPAIR las="$AS04" code="26" explaination="独立DCDC" />
+    <LASCODEPAIR las="$AS02" code="27" explaination="双向 6.6千瓦" />
+    <LASCODEPAIR las="$PE04" code="28" explaination="双层流空调" />
+    <LASCODEPAIR las="$PE06" code="29" explaination="高压热泵空调" />
+    <LASCODEPAIR las="$DS02" code="2A" explaination="外后视镜加热" />
+    <LASCODEPAIR las="$JS02" code="2B" explaination="带空气质量传感器" />
+    <LASCODEPAIR las="$QZ04" code="2C" explaination="L2" />
+    <LASCODEPAIR las="$AX22" code="2D" explaination="225/60 R17" />
+    <LASCODEPAIR las="$AV09" code="2E" explaination="冗余EPSB" />
+    <LASCODEPAIR las="$H402" code="2F" explaination="蓝牙钥匙" />
+    <LASCODEPAIR las="$H403" code="30" explaination="UWB+蓝牙钥匙" />
+    <LASCODEPAIR las="$JA05" code="31" explaination="全景影像-高清" />
+    <LASCODEPAIR las="$HE04" code="32" explaination="手动启闭行李箱开启" />
+    <LASCODEPAIR las="$HE03" code="33" explaination="电动启闭行李箱开启" />
+    <LASCODEPAIR las="$HK03" code="34" explaination="天窗电动遮阳帘" />
+    <LASCODEPAIR las="$A602" code="35" explaination="PM2.5传感器" />
+    <LASCODEPAIR las="AA$GF" code="36" explaination="A02" />
+  </LASLIST>
+</PROJECT>

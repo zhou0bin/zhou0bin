@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<ECUs>
+	<ECU id="ebb" name="ebb" shortTerm="ebb" location="ebb" category="INIT">
+		<CODING id="DEFAULT" name="DEFAULT">
+			<RECORDS>
+				<RECORD id="did0100" name="vehicle configuration" type="binary">
+					<READ service="0x220100"/>
+					<WRITE service="0x2E0100"/>
+					<VALUES>
+						<VALUE bytepos="1" mask="0xBF" startbit="6" bitlen="1" bitvalue="0b0" value="anti pinth" las="$GP02" id="四门防夹"/>
+						<VALUE bytepos="1" mask="0xFF" startbit="6" bitlen="1" bitvalue="0b1" value="anti pinth" las="$GP01" id="单门防夹"/>						
+					</VALUES>
+				</RECORD>
+			</RECORDS>
+		</CODING>
+	</ECU>
+	<ECU id="icm" name="icm" shortTerm="icm" location="icm" category="INIT">
+		<CODING id="DEFAULT" name="DEFAULT">
+			<RECORDS>
+				<RECORD id="did0100" name="vehicle configuration" type="binary">
+					<READ service="0x220100"/>
+					<WRITE service="0x2E0100"/>
+					<VALUES>
+						<VALUE bytepos="3" mask="0xFF" startbit="2" bitlen="1" bitvalue="0b0" value="with SBM" las="$LX02" id="SBM"/>
+						<VALUE bytepos="1" mask="0xFF" startbit="7" bitlen="1" bitvalue="0b0" value="with cruise" las="$CE02" id="AC"/>
+						<VALUE bytepos="2" mask="0xFF" startbit="4" bitlen="1" bitvalue="0b0" value="4 door anti pinth" las="$GP02" id="四门防夹"/>
+						<VALUE bytepos="3" mask="0xFF" startbit="3" bitlen="1" bitvalue="0b0" value="4 door anti pinth" las="$GP02" id="四门防夹"/>
+					</VALUES>
+				</RECORD>
+				<RECORD id="did0102" name="vehicle configuration" type="binary">
+					<READ service="0x220102"/>
+					<WRITE service="0x2E0102"/>
+					<VALUES>
+						<VALUE bytepos="2" mask="0xFF" startbit="0" bitlen="1" bitvalue="0b1" value="fog lamp type" las="$CY02" id="卤素前雾灯"/>
+						<VALUE bytepos="2" mask="0xFF" startbit="0" bitlen="1" bitvalue="0b1" value="fog lamp type" las="$CY03" id="LED前雾灯"/>
+					</VALUES>
+				</RECORD>
+			</RECORDS>
+		</CODING>
+	</ECU>
+	<ECU id="sm" name="sm" shortTerm="sm" location="sm" category="INIT">
+		<CODING id="DEFAULT" name="DEFAULT">
+			<RECORDS>
+				<RECORD id="did0100" name="vehicle configuration" type="binary">
+					<READ service="0x220100"/>
+					<WRITE service="0x2E0100"/>
+					<VALUES>
+						<VALUE bytepos="0" mask="0xFF" startbit="0" bitlen="8" bitvalue="0b00000011" value="主驾记忆+主驾加热" las="$FJ02.$FI02" id="主驾记忆+主驾加热"/>
+						<VALUE bytepos="1" mask="0xFF" startbit="0" bitlen="8" bitvalue="0b00000010" value="主驾记忆+主驾加热" las="$FJ02.$FI02" id="主驾记忆+主驾加热"/>
+						<VALUE bytepos="0" mask="0xFF" startbit="0" bitlen="8" bitvalue="0b00000000" value="主驾记忆" las="$FJ02.(!$FI02)" id="主驾记忆"/>
+						<VALUE bytepos="1" mask="0xFF" startbit="0" bitlen="8" bitvalue="0b00000000" value="主驾记忆" las="$FJ02.(!$FI02)" id="主驾记忆"/>
+						<VALUE bytepos="2" mask="0xFF" startbit="0" bitlen="8" bitvalue="0b00000101" value="主驾记忆" las="$FJ02.(!$FI02)" id="主驾记忆"/>
+						<VALUE bytepos="3" mask="0xFF" startbit="0" bitlen="8" bitvalue="0b00000000" value="主驾记忆" las="$FJ02.(!$FI02)" id="主驾记忆"/>
+						<VALUE bytepos="4" mask="0xFF" startbit="0" bitlen="8" bitvalue="0b00000000" value="主驾记忆" las="$FJ02.(!$FI02)" id="主驾记忆"/>
+					</VALUES>
+				</RECORD>
+			</RECORDS>
+		</CODING>
+	</ECU>
+</ECUs>

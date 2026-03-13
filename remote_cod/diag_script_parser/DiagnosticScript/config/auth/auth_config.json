@@ -1,0 +1,18 @@
+[
+    {
+        "program": "autox",
+        "communication_configuration": "00",
+        "security_concept": {
+            "concept": "apce",
+            "direction": "bidirectional",
+            "config":{
+                "root_ca_path": "",
+                "vehicle_ca_path": "",
+                "client_certificate_path": "",
+                "key_path": "",
+                "client_challenge_length": 32
+            }
+        },
+        "uds_tool_path": ""
+    }
+]

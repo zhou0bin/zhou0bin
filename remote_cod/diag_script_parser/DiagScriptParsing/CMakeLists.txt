@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.4.3)
+project(scriptclient)
+add_definitions(-DDIAGSCRIPTPARSING_TEST)
+include_directories(${PROJECT_SOURCE_DIR}/inc)
+aux_source_directory(${PROJECT_SOURCE_DIR}/src DIR_SRCS)
+link_libraries(pthread)
+add_executable(client ${DIR_SRCS})
