@@ -1,0 +1,150 @@
+syntax = "proto2";
+
+package autox.drivers.lidar_service;
+
+import "onboard/common/proto/header.proto";
+
+message LidarDeviceStatus {
+  enum LidarWorkingStatus {
+    MOTION_STATUS_UNKNOWN = 0;
+    MOTION_STOPPED = 1;
+    MOTION_STARTED = 2;
+    MOTION_STOPPING = 3;
+    MOTION_STARTING = 4;
+  }
+  enum LidarAtWipingPosition {
+    UNKNOWN_POSITION = 0;
+    AT_WIPING_POSITION = 1;
+    NOT_AT_WIPING_POSITION = 2;
+  }
+  enum LidarAllowToStop {
+    UNKNOWN_STATUS = 0;
+    ALLOW_TO_STOP = 1;
+    NOT_ALLOW_TO_STOP = 2;
+  }
+  optional LidarWorkingStatus lidar_feature_status = 1;
+  optional LidarAtWipingPosition lidar_at_wiping_position = 2;
+  optional LidarAllowToStop lidar_allow_to_stop = 3;
+}
+
+message LidarWiperStatus {
+  enum WiperWorkingStatus {
+    WIPER_WORKING_STATUS_UNKNOWN = 0;
+    WIPER_STOPPED = 1;
+    WIPER_WORKING = 2;
+  }
+  enum WiperStatus {
+    WIPER_STATUS_UNKNOWN = 0;
+    WIPER_NORMAL = 1;
+    WIPER_FAULT = 2;
+  }
+  enum WiperDryStatus {
+    WIPER_DRY_STATUS_UNKNOWN = 0;
+    WIPER_DRY_WORKING = 1;
+    WIPER_NOT_DRY_WORKING = 2;
+  }
+  enum WiperBladeBurn {
+    WIPER_BLADE_BURN_UNKNOWN = 0;
+    WIPER_BLADE_BURN_RISKY = 1;
+    WIPER_BLADE_BURN_SAFE = 2;
+  }
+  enum WiperTemperatureStatus {
+    WIPER_TEMPERATURE_STATUS_UNKNOWN = 0;
+    WIPER_TEMPERATURE_PROTECTION = 1;
+    WIPER_TEMPERATURE_UNPROTECT = 2;
+  }
+  enum WiperVoltageStatus {
+    WIPER_VOLTAGE_STATUS_UNKNOWN = 0;
+    WIPER_VOLTAGE_PROTECTION = 1;
+    WIPER_VOLTAGE_SHORT_CIRCUIT_PROTECTION = 2;
+  }
+  enum WiperMotorStatus {
+    WIPER_MOTOR_STATUS_UNKNOWN = 0;
+    WIPER_MOTOR_NORMAL = 1;
+    WIPER_MOTOR_FAULT = 2;
+  }
+  enum WiperComunicationStatus {
+    WIPER_COMUNICATION_STATUS_UNKNOWN = 0;
+    WIPER_COMUNICATION_NORMAL = 1;
+    WIPER_COMUNICATION_FAULT = 2;
+  }
+  enum WiperServiceStatus {
+    WIPER_SERVICE_STATUS_UNKNOWN = 0;
+    WIPER_BLADE_NORMAL = 1;
+    CHANG_BLADE = 2;
+  }
+  enum WiperHallSensorStatus {
+    HALL_SENSOR_STATUS_UNKNOWN = 0;
+    HALL_SENSOR_NORMAL = 1;
+    HALL_SENSOR_FAULT = 2;
+  }
+  enum WiperPositionSensorStatus {
+    POSITION_SENSOR_STATUS_UNKNOWN = 0;
+    POSITION_SENSOR_NORMAL = 1;
+    POSITION_SENSOR_FAULT = 2;
+  }
+  optional WiperWorkingStatus wiper_working_status = 1;
+  optional WiperStatus wiper_status = 2;
+  optional WiperDryStatus wiper_dry_status = 3;
+  optional WiperBladeBurn wiper_blade_burn = 4;
+  optional WiperTemperatureStatus wiper_temperature_status = 5;
+  optional WiperVoltageStatus wiper_voltage_status = 6;
+  optional WiperMotorStatus wiper_motor_status = 7;
+  optional WiperComunicationStatus wiper_comunication_status = 8;
+  optional WiperServiceStatus wiper_service_status = 9;
+  optional WiperHallSensorStatus wiper_hall_sensor_status = 10;
+  optional WiperPositionSensorStatus wiper_position_sensor_status = 11;
+}
+
+message LidarCleaningStatus {
+  optional string lidar_name = 1;
+  optional LidarDeviceStatus lidar_device_status = 2;
+  optional LidarWiperStatus lidar_wiper_status = 3;
+}
+
+message LidarStatus {
+  optional autox.common.Header header = 1;
+  optional LidarCleaningStatus xlidar = 2;
+  optional LidarCleaningStatus blidar_front = 3;
+  optional LidarCleaningStatus blidar_left = 4;
+  optional LidarCleaningStatus blidar_right = 5;
+  optional LidarCleaningStatus blidar_rear = 6;
+}
+
+message BLidarStatus {
+  optional autox.common.Header header = 1;
+  optional uint32 fpga_version = 2;
+  optional uint32 ps_version = 3;
+  optional uint32 system_monitor = 4;
+  optional uint32 clock0 = 5;
+  optional uint32 clock1 = 6;
+  optional uint32 clock2 = 7;
+  optional uint32 clock3 = 8;
+  optional uint32 fpga_temperature = 9;
+  optional uint32 board_temperature = 10;
+  optional uint32 tx_temperature = 11;
+  optional uint32 rx_temperature = 12;
+  optional uint32 power_12v = 13;
+  optional uint32 wl_status = 14;
+  optional uint32 wl_distance = 15;
+  optional uint32 wl_rx_packet = 16;
+  optional uint32 wl_err_packet = 17;
+  optional uint32 power_consumption = 18;
+  optional uint32 motor_speed = 19;
+  optional uint32 pl_version = 20;
+  optional uint32 pl_temperature = 21;
+  optional uint32 voltage_12v = 22;
+  optional uint32 wl_com_status = 23;
+  optional uint32 wl_distance_count = 24;
+  optional uint32 wl_rx_count = 25;
+  optional uint32 wl_err_packet_count = 26;
+  optional uint32 rotor_fpga_flt = 27;
+  optional uint32 rotor_board_flt = 28;
+  optional uint32 rotor_tx_flt = 29;
+  optional uint32 rotor_rx_flt = 30;
+  optional uint32 stator_pl_flt = 31;
+  optional uint32 temp_worst_level = 32;
+  optional uint32 roll_count = 33;
+}
+
+message XLidarStatus {}

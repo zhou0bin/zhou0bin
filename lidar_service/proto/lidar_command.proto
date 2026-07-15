@@ -1,0 +1,53 @@
+syntax = "proto2";
+
+package autox.drivers.lidar_service;
+
+import "onboard/common/proto/header.proto";
+
+message XLidarWiperCommand {
+  enum WiperWipingMode {
+    WIPER_MODE_INVALID = 1;
+    WIPER_CONTINUOUS_WIPING_MODE = 2;
+    WIPER_CYCLES_WIPING_MODE = 3;
+  }
+  enum WiperContinuousLevel {
+    WIPING_INVALID_CONTINUOUS = 1;
+    WIPING_ACTIVATE_CONTINUOUS = 2;
+    WIPING_DEACTIVATE_CONTINUOUS = 3;
+  }
+  enum WiperCycles {
+    INVALID_CYCLE = 1;
+    WIPING_ONE_CYCLE = 2;
+    WIPING_TWO_CYCLES = 3;
+    WIPING_THREE_CYCLES = 4;
+    WIPING_FOUR_CYCLES = 5;
+    WIPING_FIVE_CYCLES = 6;
+    WIPING_SIX_CYCLES = 7;
+  }
+  enum WiperFrequency {
+    INVALID_FREQUENCY = 1;
+    FREQUENCY_HIGH = 2;
+    FREQUENCY_MEDIUM = 3;
+    FREQUENCY_LOW = 4;
+  }
+  optional autox.common.Header header = 1;
+  optional WiperWipingMode wiping_mode = 2;
+  optional WiperContinuousLevel continuous_level = 3;
+  optional WiperCycles wiper_cycles = 4;
+  optional WiperFrequency frequence = 5;
+}
+
+message LidarWorkingCommand {
+  enum LidarWorkingToggle {
+    NO_REQUEST = 0;
+    STOP_WORKING = 1;
+    START_WORKING = 2;
+  }
+
+  optional autox.common.Header header = 1;
+  optional LidarWorkingToggle xlidar = 2;
+  optional LidarWorkingToggle blidar_front = 3;
+  optional LidarWorkingToggle blidar_left = 4;
+  optional LidarWorkingToggle blidar_right = 5;
+  optional LidarWorkingToggle blidar_rear = 6;
+}
