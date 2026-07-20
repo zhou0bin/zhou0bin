@@ -1,0 +1,1 @@
+cmd_/home/linbinzhou/EOL/meapp/peak-linux-driver-8.17.0/driver/pcan.ko := ld -r  -m elf_x86_64  --build-id=sha1  -T scripts/module.lds -o /home/linbinzhou/EOL/meapp/peak-linux-driver-8.17.0/driver/pcan.ko /home/linbinzhou/EOL/meapp/peak-linux-driver-8.17.0/driver/pcan.o /home/linbinzhou/EOL/meapp/peak-linux-driver-8.17.0/driver/pcan.mod.o;  true

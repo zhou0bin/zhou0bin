@@ -1,0 +1,2583 @@
+{
+  "assemblies":
+  [
+    {
+      "name":"Front blind spot filling assembly",
+      "steps":
+      [
+        {
+          "id":1,
+          "name":"Wiper Action",
+          "type":"CAN",
+          "cmd":
+          [
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x443",
+              "signals":
+              {
+                "Fr_bLid_Wiper_Ctl":2,
+                "Fr_bLid_Wiper_Frequency_Ctl":0,
+                "Fr_bLid_Wiper_Number_Ctl":0
+              }
+            },
+            {
+              "action":"sleep",
+              "ms":2000
+            },
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x443",
+              "signals":
+              {
+                "Fr_bLid_Wiper_Ctl":1,
+                "Fr_bLid_Wiper_Frequency_Ctl":30,
+                "Fr_bLid_Wiper_Number_Ctl":1
+              }
+            },
+            {
+              "action":"sleep",
+              "ms":4000
+            }
+          ]
+        },
+
+        {
+          "id":2,
+          "name":"Wiper Version Read",
+          "type":"CAN",
+          "cmd":
+          [
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x6D3",
+              "signals":
+              {
+                "...":1
+              }
+            },
+            {
+              "action":"sleep",
+              "ms":1000
+            }
+          ]
+        },
+
+        {
+          "id":3,
+          "name":"Wiper Reset",
+          "type":"CAN",
+          "cmd":
+          [
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x443",
+              "signals":
+              {
+                "Fr_bLid_Wiper_Ctl":2
+              }
+            },
+            {
+              "action":"sleep",
+              "ms":2000
+            }
+          ]
+        },
+
+        {
+          "id":4,
+          "name":"Fisheye Shield Action",
+          "type":"CAN",
+          "cmd":
+          [
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x680",
+              "signals":
+              {
+                "CDC_fisheye_f_cmr_shield_req":1
+              }
+            },
+
+            {
+              "action":"sleep",
+              "ms":5000
+            },
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x680",
+              "signals":
+              {
+                "CDC_fisheye_f_cmr_shield_req":2
+              }
+            },
+            {
+              "action":"sleep",
+              "ms":3000
+            }
+          ]
+        },
+
+        {
+          "id":5,
+          "name":"Fisheye Shield Version Read",
+          "type":"NONE",
+          "cmd":[]
+        },
+
+        {
+          "id":6,
+          "name":"LED On",
+          "type":"CAN",
+          "cmd":
+          [
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x680",
+              "signals":
+              {
+                "CDC_FfishEyeLedCtrl":2
+              }
+            }
+          ]
+        },
+
+        {
+          "id":7,
+          "name":"Fisheye Camera Heating",
+          "type":"CAN",
+          "cmd":
+          [
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x680",
+              "signals":
+              {
+                "CDC_fisheye_f_cmr_heat_req":2
+              }
+            },
+
+            {
+              "action":"sleep",
+              "ms":60000
+            },
+
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x680",
+              "signals":
+              {
+                "CDC_fisheye_f_cmr_heat_req":1
+              }
+            }
+          ]
+        },
+
+        {
+          "id":8,
+          "name":"Capture Fisheye Raw Image",
+          "type":"SHELL",
+          "cmd": [
+            {
+              "action": "shell",
+              "id":"9",
+              "bash": "cd ~/platsw/tools/camera/ && rm video9-001.raw || true && ./x_cam -d /dev/video9 -s -e 1",
+              "signals":
+              {
+                "width": 3000,
+                "height": 3190
+              }
+            }
+          ]
+        },
+
+        {
+          "id":9,
+          "name":"Read Camera Version",
+          "type":"SHELL",
+          "cmd":[
+                  {
+                    "action":"shell",
+                    "id":"99",
+                    "bash": "sshpass -p 'root' ssh root@172.20.15.31 \"/media/card/test/camera_tool.sh 0x14 allinfo\""
+                  }
+                ]
+        },
+
+        {
+          "id":10,
+          "name":"Capture Pollution Detection Image",
+          "type":"NONE",
+          "cmd":[]
+        },
+
+        {
+          "id":11,
+          "name":"Read LiDAR Version Status",
+          "type":"SHELL",
+          "cmd":[
+                  {
+                    "action":"shell",
+                    "id":"77",
+                    "bash": "docker exec -u autox -w /xurban xurban_dev_autox bash -c 'source /xurban/onboard/bootstrap/startup/xurban_base.sh && stdbuf -oL ./bazel-bin/onboard/drivers/lidar_service/lidar_status_reader /xurban/sensor/lidar/blidar_front_status'"
+                  }
+                ]
+        },
+
+        {
+          "id":12,
+          "name":"Check Point Cloud",
+          "type":"NONE",
+          "cmd":[]
+        }
+      ]
+    },
+
+    {
+      "name":"Truck lid blind spot filling assembly",
+      "steps":
+      [
+        {
+          "id":1,
+          "name":"Wiper Action",
+          "type":"CAN",
+          "cmd":
+          [
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x443",
+              "signals":
+              {
+                "Re_bLid_RAC_Wiper_Ctl":2,
+                "Re_bLid_RAC_Wiper_Number_Ctl":0,
+                "Re_bLid_RAC_Wiper_Frequency_Ctl":0
+              }
+            },
+
+            {
+              "action":"sleep",
+              "ms":2000
+            },
+
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x443",
+              "signals":
+              {
+                "Re_bLid_RAC_Wiper_Ctl":1,
+                "Re_bLid_RAC_Wiper_Number_Ctl":1,
+                "Re_bLid_RAC_Wiper_Frequency_Ctl":30
+              }
+            },
+            {
+              "action":"sleep",
+              "ms":5000
+            }
+          ]
+        },
+
+        {
+          "id":2,
+          "name":"Wiper Version Read",
+          "type":"NONE",
+          "cmd":
+          [
+            {
+              "action":"sleep",
+              "ms":1000
+            }
+          ]
+        },
+
+        {
+          "id":3,
+          "name":"Wiper Reset",
+          "type":"CAN",
+          "cmd":
+          [
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x443",
+              "signals":
+              {
+                "Re_bLid_RAC_Wiper_Ctl":2
+              }
+            },
+            {
+              "action":"sleep",
+              "ms":2000
+            }
+          ]
+        },
+
+        {
+          "id":4,
+          "name":"Fisheye Shield Action",
+          "type":"CAN",
+          "cmd":
+          [
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x680",
+              "signals":
+              {
+                "CDC_fisheye_b_cmr_shield_req":1
+              }
+            },
+
+            {
+              "action":"sleep",
+              "ms":5000
+            },
+
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x680",
+              "signals":
+              {
+                "CDC_fisheye_b_cmr_shield_req":2
+              }
+            },
+            {
+              "action":"sleep",
+              "ms":3000
+            }
+          ]
+        },
+
+        {
+          "id":5,
+          "name":"Fisheye Shield Version Read",
+          "type":"NONE",
+          "cmd":
+          [
+            {
+              "action":"sleep",
+              "ms":2000
+            }
+          ]
+        },
+        {
+          "id":6,
+          "name":"LED On",
+          "type":"CAN",
+          "cmd":
+          [
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x680",
+              "signals":
+              {
+                "CDC_RfishEyeLedCtrl":2
+              }
+            }
+          ]
+        },
+
+        {
+          "id":7,
+          "name":"Fisheye Camera Heating",
+          "type":"CAN",
+          "cmd":
+          [
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x680",
+              "signals":
+              {
+                "CDC_fisheye_b_cmr_heat_req":2
+              }
+            },
+            {
+              "action":"sleep",
+              "ms":60000
+            },
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x680",
+              "signals":
+              {
+                "CDC_fisheye_b_cmr_heat_req":2
+              }
+            }
+          ]
+        },
+
+        {
+          "id":8,
+          "name":"Capture Fisheye Raw Image",
+          "type":"SHELL",
+          "cmd": [
+            {
+              "action": "shell",
+              "id":"8",
+              "bash": "cd ~/platsw/tools/camera/ && rm video8-001.raw || true && ./x_cam -d /dev/video8 -s -e 1",
+              "signals":
+              {
+                "width": 3000,
+                "height": 3190
+              }
+            }
+          ]
+        },
+
+        {
+          "id":9,
+          "name":"Read Camera Version",
+          "type":"SHELL",
+          "cmd":[
+                  {
+                    "action":"shell",
+                    "id":"99",
+                    "bash": "sshpass -p 'root' ssh root@172.20.15.32 \"/media/card/test/camera_tool.sh 0x14 allinfo\""
+                  }
+                ]
+        },
+
+        {
+          "id":10,
+          "name":"Capture Pollution Detection Image",
+          "type":"NONE",
+          "cmd":[]
+        },
+
+        {
+          "id":11,
+          "name":"Read LiDAR Version Status",
+          "type":"SHELL",
+          "cmd":[
+                  {
+                    "action":"shell",
+                    "id":"77",
+                    "bash": "docker exec -u autox -w /xurban xurban_dev_autox bash -c 'source /xurban/onboard/bootstrap/startup/xurban_base.sh && stdbuf -oL ./bazel-bin/onboard/drivers/lidar_service/lidar_status_reader /xurban/sensor/lidar/blidar_rear_status'"
+                  }
+                ]
+        },
+
+        {
+          "id":12,
+          "name":"Check Point Cloud",
+          "type":"NONE",
+          "cmd":[]
+        }
+      ]
+    },
+
+    {
+      "name":"Left blind spot filling assembly",
+      "steps":
+      [
+        {
+          "id":1,
+          "name":"Wiper Action",
+          "type":"CAN",
+          "cmd":
+          [
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x443",
+              "signals":
+              {
+                "Le_bLid_Wiper_Ctl":2,
+                "Le_bLid_Wiper_Frequency_Ctl":0,
+                "Le_bLid_Wiper_Number_Ctl":0
+              }
+            },
+            {
+              "action":"sleep",
+              "ms":2000
+            },
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x443",
+              "signals":
+              {
+                "Le_bLid_Wiper_Ctl":1,
+                "Le_bLid_Wiper_Frequency_Ctl":30,
+                "Le_bLid_Wiper_Number_Ctl":1
+              }
+            },
+            {
+              "action":"sleep",
+              "ms":5000
+            }
+          ]
+        },
+
+        {
+          "id":2,
+          "name":"Wiper Version Read",
+          "type":"NONE",
+          "cmd":[]
+        },
+
+        {
+          "id":3,
+          "name":"Wiper Reset",
+          "type":"CAN",
+          "cmd":
+          [
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x443",
+              "signals":
+              {
+                "Le_bLid_Wiper_Ctl":2
+              }
+            },
+            {
+              "action":"sleep",
+              "ms":2000
+            }
+          ]
+        },
+
+        {
+          "id":4,
+          "name":"Fisheye Shield Action",
+          "type":"CAN",
+          "cmd":
+          [
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x680",
+              "signals":
+              {
+                "CDC_fisheye_l_cmr_shield_req":1
+              }
+            },
+
+            {
+              "action":"sleep",
+              "ms":5000
+            },
+
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x680",
+              "signals":
+              {
+                "CDC_fisheye_l_cmr_shield_req":2
+              }
+            },
+            {
+              "action":"sleep",
+              "ms":3000
+            }
+          ]
+        },
+
+        {
+          "id":5,
+          "name":"Fisheye Shield Version Read",
+          "type":"NONE",
+          "cmd":[]
+        },
+
+        {
+          "id":6,
+          "name":"LED On",
+          "type":"CAN",
+          "cmd":
+          [
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x680",
+              "signals":
+              {
+                "CDC_FLfishEyeLedCtrl":2
+              }
+            }
+          ]
+        },
+
+        {
+          "id":7,
+          "name":"Fisheye Camera Heating",
+          "type":"CAN",
+          "cmd":
+          [
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x680",
+              "signals":
+              {
+                "CDC_fisheye_l_cmr_heat_req":2
+              }
+            },
+            {
+              "action":"sleep",
+              "ms":60000
+            },
+            {
+              "action":"can",
+              "bus":"BCAN2",
+              "id":"0x680",
+              "signals":
+              {
+                "CDC_fisheye_l_cmr_heat_req":1
+              }
+            }
+          ]
+        },
+
+        {
+          "id":8,
+          "name":"Capture Fisheye Raw Image",
+          "type":"SHELL",
+          "cmd": [
+            {
+              "action": "shell",
+              "id":"3",
+              "bash": "cd ~/platsw/tools/camera/ && rm video3-001.raw || true && ./x_cam -d /dev/video3 -s -e 1",
+              "signals":
+              {
+                "width": 3000,
+                "height": 3190
+              }
+            }
+          ]
+        },
+
+        {
+          "id":9,
+          "name":"Read Camera Version",
+          "type":"SHELL",
+          "cmd":[
+                  {
+                    "action":"shell",
+                    "id":"99",
+                    "bash": "sshpass -p 'root' ssh root@172.20.15.31 \"/media/card/test/camera_tool.sh 0x14 allinfo\""
+                  }
+                ]
+        },
+
+        {
+          "id":10,
+          "name":"Capture Pollution Detection Image",
+          "type":"NONE",
+          "cmd":[]
+        },
+
+        {
+          "id":11,
+          "name":"Read LiDAR Version Status",
+          "type":"SHELL",
+          "cmd":[
+                  {
+                    "action":"shell",
+                    "id":"77",
+                    "bash": "docker exec -u autox -w /xurban xurban_dev_autox bash -c 'source /xurban/onboard/bootstrap/startup/xurban_base.sh && stdbuf -oL ./bazel-bin/onboard/drivers/lidar_service/lidar_status_reader /xurban/sensor/lidar/blidar_left_status'"
+                  }
+                ]
+        },
+
+        {
+          "id":12,
+          "name":"Check Point Cloud",
+          "type":"NONE",
+          "cmd":[]
+        }
+      ]
+    },
+    {
+          "name":"Left Wing Sub-board Blind Spot Filling Assembly",
+          "steps":[
+            {
+              "id":1,
+              "name":"Wiper Action",
+              "type":"CAN",
+              "cmd":[
+                {
+                  "action":"can",
+                  "bus":"BCAN2",
+                  "id":"0x443",
+                  "signals":{
+                    "LF_pCam_Wiper_Ctl":2,
+                    "LF_pCam_Wiper_Frequency_Ctl":0,
+                    "LF_pCam_Wiper_Number_Ctl":0
+                  }
+                },
+                {
+                  "action":"sleep",
+                  "ms":2000
+                },
+                {
+                  "action":"can",
+                  "bus":"BCAN2",
+                  "id":"0x443",
+                  "signals":{
+                    "LF_pCam_Wiper_Ctl":1,
+                    "LF_pCam_Wiper_Frequency_Ctl":30,
+                    "LF_pCam_Wiper_Number_Ctl":1
+                  }
+                },
+                {
+                    "action":"sleep",
+                    "ms":5000
+                }
+              ]
+            },
+            {
+              "id":2,
+              "name":"Wiper Version Read",
+              "type":"NONE",
+              "cmd":[]
+            },
+            {
+              "id":3,
+              "name":"Wiper Reset",
+              "type":"CAN",
+              "cmd":[
+                {
+                  "action":"can",
+                  "bus":"BCAN2",
+                  "id":"0x443",
+                  "signals":{
+                    "LF_pCam_Wiper_Ctl":2
+                  }
+                },
+                {
+                      "action":"sleep",
+                      "ms":2000
+                }
+              ]
+            },
+            {
+              "id":4,
+              "name":"Temperature Read",
+              "type":"NONE",
+              "cmd":[]
+            },
+            {
+              "id":5,
+              "name":"Window Heating",
+              "type":"CAN",
+              "cmd":[
+                {
+                  "action":"can",
+                  "bus":"BCAN2",
+                  "id":"0x680",
+                  "signals":{
+                    "CDC_auto_lp_cmr_heat_req":2
+                  }
+                },
+                {
+                  "action":"sleep",
+                  "ms":60000
+                },
+                {
+                  "action":"can",
+                  "bus":"BCAN2",
+                  "id":"0x680",
+                  "signals":{
+                    "CDC_auto_lp_cmr_heat_req":1
+                  }
+                }
+              ]
+            },
+            {
+              "id":6,
+              "name":"Capture Wide-angle Raw Image",
+              "type":"SHELL",
+              "cmd": [
+                {
+                  "action": "shell",
+                  "id":"3",
+                  "bash": "cd ~/platsw/tools/camera/ && rm video3-001.raw || true && ./x_cam -d /dev/video3 -s -e 1",
+                  "signals":
+                  {
+                    "width": 1508,
+                    "height": 2888
+                  }
+                }
+              ]
+            },
+            {
+              "id":7,
+              "name":"Read Radar Version Status Fault Information",
+              "type":"NONE",
+              "cmd":[]
+            },
+            {
+              "id":8,
+              "name":"Check Point Cloud",
+              "type":"NONE",
+              "cmd":[]
+            }
+          ]
+    },
+
+ {
+  "name":"Left Rear Blind Spot Filling Assembly",
+  "steps":[
+    {
+      "id":1,
+      "name":"Wiper Action",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x443",
+          "signals":{
+            "LRB_pCam_Wiper_Ctl":2,
+            "LRB_pCam_Wiper_Frequency_Ctl":0,
+            "LRB_pCam_Wiper_Number_Ctl":0
+          }
+        },
+        {
+          "action":"sleep",
+          "ms":2000
+        },
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x443",
+          "signals":{
+            "LRB_pCam_Wiper_Ctl":1,
+            "LRB_pCam_Wiper_Frequency_Ctl":30,
+            "LRB_pCam_Wiper_Number_Ctl":1
+          }
+        },
+        {
+                "action":"sleep",
+                "ms":5000
+        }
+      ]
+    },
+    {
+      "id":2,
+      "name":"Wiper Version Read",
+      "type":"NONE",
+      "cmd":[]
+    },
+    {
+      "id":3,
+      "name":"Wiper Reset",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x443",
+          "signals":{
+            "LRB_pCam_Wiper_Ctl":2
+          }
+        },
+        {
+          "action":"sleep",
+          "ms":2000
+        }
+      ]
+    },
+    {
+      "id":4,
+      "name":"Temperature Read",
+      "type":"NONE",
+      "cmd":[]
+    },
+    {
+      "id":5,
+      "name":"Window Heating",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x680",
+          "signals":{
+            "CDC_auto_lb_cmr_heat_req":2
+          }
+        },
+        {
+          "action":"sleep",
+          "ms":60000
+        },
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x680",
+          "signals":{
+            "CDC_auto_lb_cmr_heat_req":1
+          }
+        }
+      ]
+    },
+    {
+      "id":6,
+      "name":"Capture Wide-angle Raw Image",
+      "type":"SHELL",
+      "cmd": [
+        {
+          "action": "shell",
+          "id":"8",
+          "bash": "cd ~/platsw/tools/camera/ && rm video8-001.raw || true && ./x_cam -d /dev/video8 -s -e 1",
+          "signals":
+          {
+            "width": 1508,
+            "height": 2888
+          }
+        }
+      ]
+    },
+    {
+      "id":7,
+      "name":"Read Radar Version Status Fault Information",
+      "type":"NONE",
+      "cmd":[]
+    },
+    {
+      "id":8,
+      "name":"Check Point Cloud",
+      "type":"NONE",
+      "cmd":[]
+    }
+  ]
+},
+{
+  "name":"Right Blind Spot Filling Assembly",
+  "steps":[
+    {
+      "id":1,
+      "name":"Wiper Action",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x443",
+          "signals":{
+            "Ri_bLid_Wiper_Ctl":2,
+            "Ri_bLid_Wiper_Frequency_Ctl":0,
+            "Ri_bLid_Wiper_Number_Ctl":0
+          }
+        },
+        {
+          "action":"sleep",
+          "ms":2000
+        },
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x443",
+          "signals":{
+            "Ri_bLid_Wiper_Ctl":1,
+            "Ri_bLid_Wiper_Frequency_Ctl":30,
+            "Ri_bLid_Wiper_Number_Ctl":1
+          }
+        },
+        {
+          "action":"sleep",
+          "ms":5000
+        }
+      ]
+    },
+    {
+      "id":2,
+      "name":"Wiper Version Read",
+      "type":"NONE",
+      "cmd":[]
+    },
+    {
+      "id":3,
+      "name":"Wiper Reset",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x443",
+          "signals":{
+            "Ri_bLid_Wiper_Ctl":2
+          }
+        },
+        {
+          "action":"sleep",
+          "ms":2000
+        }
+      ]
+    },
+    {
+      "id":4,
+      "name":"Fisheye Shield Action",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x680",
+          "signals":{
+            "CDC_fisheye_r_cmr_shield_req":1
+          }
+        },
+        {
+          "action":"sleep",
+          "ms":5000
+        },
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x680",
+          "signals":{
+            "CDC_fisheye_r_cmr_shield_req":2
+          }
+        },
+        {
+          "action":"sleep",
+          "ms":3000
+        }
+      ]
+    },
+    {
+      "id":5,
+      "name":"Fisheye Shield Version Read",
+      "type":"NONE",
+      "cmd":[]
+    },
+    {
+      "id":6,
+      "name":"LED On",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x680",
+          "signals":{
+            "CDC_FRfishEyeLedCtrl":2
+          }
+        }
+      ]
+    },
+    {
+      "id":7,
+      "name":"Fisheye Camera Heating",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x680",
+          "signals":{
+            "CDC_fisheye_r_cmr_heat_req":2
+          }
+        },
+        {
+          "action":"sleep",
+          "ms":60000
+        },
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x680",
+          "signals":{
+            "CDC_fisheye_r_cmr_heat_req":1
+          }
+        }
+      ]
+    },
+    {
+      "id":8,
+      "name":"Capture Fisheye Raw Image",
+      "type":"SHELL",
+      "cmd": [
+        {
+          "action": "shell",
+          "id":"4",
+          "bash": "cd ~/platsw/tools/camera/ && rm video4-001.raw || true && ./x_cam -d /dev/video4 -s -e 1",
+          "signals":
+          {
+            "width": 3000,
+            "height": 3190
+          }
+        }
+      ]
+    },
+    {
+      "id":9,
+      "name":"Read Camera Version",
+      "type":"NONE",
+      "cmd":[]
+    },
+    {
+      "id":10,
+      "name":"Capture Pollution Detection Image",
+      "type":"SHELL",
+      "cmd":[
+              {
+                "action":"shell",
+                "id":"99",
+                "bash": "sshpass -p 'root' ssh root@172.20.15.31 \"/media/card/test/camera_tool.sh 0x15 allinfo\""
+              }
+            ]
+    },
+    {
+      "id":11,
+      "name":"Read LiDAR Version Status",
+      "type":"SHELL",
+      "cmd":[
+              {
+                "action":"shell",
+                "id":"77",
+                "bash": "docker exec -u autox -w /xurban xurban_dev_autox bash -c 'source /xurban/onboard/bootstrap/startup/xurban_base.sh && stdbuf -oL ./bazel-bin/onboard/drivers/lidar_service/lidar_status_reader /xurban/sensor/lidar/blidar_right_status'"
+              }
+            ]
+    },
+    {
+      "id":12,
+      "name":"Check Point Cloud",
+      "type":"NONE",
+      "cmd":[]
+    }
+  ]
+},
+
+{
+  "name":"Right Wing Sub-board Blind Spot Filling Assembly",
+  "steps":[
+    {
+      "id":1,
+      "name":"Read Radar Version Status Fault Information",
+      "type":"NONE",
+      "cmd":[]
+    },
+    {
+      "id":2,
+      "name":"Check Point Cloud",
+      "type":"NONE",
+      "cmd":[]
+    }
+  ]
+},
+
+{
+  "name":"Right Rear Blind Spot Filling Assembly",
+  "steps":[
+    {
+      "id":1,
+      "name":"Wiper Action",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x443",
+          "signals":{
+            "RRB_pCam_Wiper_Ctl":2,
+            "RRB_pCam_Wiper_Frequency_Ctl":0,
+            "RRB_pCam_Wiper_Number_Ctl":0
+          }
+        },
+        {
+          "action":"sleep",
+          "ms":2000
+        },
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x443",
+          "signals":{
+            "RRB_pCam_Wiper_Ctl":1,
+            "RRB_pCam_Wiper_Frequency_Ctl":30,
+            "RRB_pCam_Wiper_Number_Ctl":1
+          }
+        },
+        {
+          "action":"sleep",
+          "ms":5000
+        }
+      ]
+    },
+    {
+      "id":2,
+      "name":"Wiper Version Read",
+      "type":"NONE",
+      "cmd":[]
+    },
+    {
+      "id":3,
+      "name":"Wiper Reset",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x443",
+          "signals":{
+            "RRB_pCam_Wiper_Ctl":2
+          }
+        },
+        {
+          "action":"sleep",
+          "ms":2000
+        }
+      ]
+    },
+    {
+      "id":4,
+      "name":"Temperature Read",
+      "type":"NONE",
+      "cmd":[]
+    },
+    {
+      "id":5,
+      "name":"Window Heating",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x680",
+          "signals":{
+            "CDC_auto_rb_cmr_heat_req":2
+          }
+        },
+        {
+          "action":"sleep",
+          "ms":60000
+        },
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x680",
+          "signals":{
+            "CDC_auto_rb_cmr_heat_req":1
+          }
+        }
+      ]
+    },
+    {
+      "id":6,
+      "name":"Capture Wide-angle Raw Image",
+      "type":"SHELL",
+      "cmd": [
+        {
+          "action": "shell",
+          "id":"8",
+          "bash": "cd ~/platsw/tools/camera/ && rm video8-001.raw || true && ./x_cam -d /dev/video8 -s -e 1",
+          "signals":
+          {
+            "width": 1508,
+            "height": 2888
+          }
+        }
+      ]
+    },
+    {
+      "id":7,
+      "name":"Read Radar Version Status Fault Information",
+      "type":"NONE",
+      "cmd":[]
+    },
+    {
+      "id":8,
+      "name":"Check Point Cloud",
+      "type":"NONE",
+      "cmd":[]
+    }
+  ]
+},
+
+{
+  "name": "Roof Assembly - Front",
+  "steps": [
+    {
+      "id": 1,
+      "name": "Front Left Camera Wiper Action",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x443",
+          "signals": {
+            "FL_Cam_Wiper_Frequency_Ctl": 0,
+            "FL_Cam_Wiper_Ctl": 2,
+            "FL_Cam_Wiper_Number_Ctl": 0
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 2000
+        },
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x443",
+          "signals": {
+            "FL_Cam_Wiper_Ctl": 1,
+            "FL_Cam_Wiper_Frequency_Ctl": 30,
+            "FL_Cam_Wiper_Number_Ctl": 1
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 5000
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Front Left Camera Wiper Version Read",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 3,
+      "name": "Front Left Camera Wiper Reset",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x443",
+          "signals": {
+            "FL_Cam_Wiper_Ctl": 2
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 2000
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Front Right Camera Wiper Action",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x443",
+          "signals": {
+            "FR_Cam_Wiper_Ctl": 2,
+            "FR_Cam_Wiper_Frequency_Ctl": 0,
+            "FR_Cam_Wiper_Number_Ctl": 0
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 2000
+        },
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x443",
+          "signals": {
+            "FR_Cam_Wiper_Ctl": 1,
+            "FR_Cam_Wiper_Frequency_Ctl": 30,
+            "FR_Cam_Wiper_Number_Ctl": 1
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 5000
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Front Right Camera Wiper Version Read",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 6,
+      "name": "Front Right Camera Wiper Reset",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x443",
+          "signals": {
+            "FR_Cam_Wiper_Ctl": 2
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 2000
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Front Camera Shield Action",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x680",
+          "signals": {
+            "CDC_front_cmr_sreen_shield_req": 1
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 5000
+        },
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x680",
+          "signals": {
+            "CDC_front_cmr_sreen_shield_req": 2
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 3000
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Front Camera Shield Version Read",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 9,
+      "name": "Front Left Camera Temperature Read",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 10,
+      "name": "Front Left Camera Window Heating",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x680",
+          "signals": {
+            "CDC_auto_lf_cmr_heat_req": 2
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 60000
+        },
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x680",
+          "signals": {
+            "CDC_auto_lf_cmr_heat_req": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Front Right Camera Temperature Read",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 12,
+      "name": "Front Right Camera Window Heating",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x680",
+          "signals": {
+            "CDC_auto_rf_cmr_heat_req": 2
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 60000
+        },
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x680",
+          "signals": {
+            "CDC_auto_rf_cmr_heat_req": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Capture Front Left Wide-angle Raw Image",
+      "type":"SHELL",
+      "cmd": [
+        {
+          "action": "shell",
+          "id":"0",
+          "bash": "cd ~/platsw/tools/camera/ && rm video0-001.raw || true && ./x_cam -d /dev/video0 -s -e 1",
+          "signals":
+          {
+            "width": 1508,
+            "height": 2889
+          }
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Capture Front Left Telephoto Raw Image",
+      "type":"SHELL",
+      "cmd": [
+        {
+          "action": "shell",
+          "id":"6",
+          "bash": "cd ~/platsw/tools/camera/ && rm video6-001.raw || true && ./x_cam -d /dev/video6 -s -e 1",
+          "signals":
+          {
+            "width": 1508,
+            "height": 2890
+          }
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Capture Front Right Wide-angle Raw Image",
+      "type":"SHELL",
+      "cmd": [
+        {
+          "action": "shell",
+          "id":"7",
+          "bash": "cd ~/platsw/tools/camera/ && rm video7-001.raw || true && ./x_cam -d /dev/video7 -s -e 1",
+          "signals":
+          {
+            "width": 1508,
+            "height": 2891
+          }
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Capture Front Right Telephoto Raw Image",
+      "type":"SHELL",
+      "cmd": [
+        {
+          "action": "shell",
+          "id":"4",
+          "bash": "cd ~/platsw/tools/camera/ && rm video4-001.raw || true && ./x_cam -d /dev/video4 -s -e 1",
+          "signals":
+          {
+            "width": 1508,
+            "height": 2892
+          }
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Read Front Left Radar Version Status Fault Information",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 18,
+      "name": "Check Front Left Radar Point Cloud",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 19,
+      "name": "Read Front Right Radar Version Status Fault Information",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 20,
+      "name": "Check Front Right Radar Point Cloud",
+      "type": "NONE",
+      "cmd": []
+    }
+  ]
+},
+
+{
+  "name": "Roof Assembly - Left",
+  "steps": [
+    {
+      "id": 1,
+      "name": "Left Camera Wiper Action",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x443",
+          "signals": {
+            "Le_Cam_Wiper_Ctl": 2,
+            "Le_Cam_Wiper_Frequency_Ctl": 0,
+            "Le_Cam_Wiper_Number_Ctl": 0
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 2000
+        },
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x443",
+          "signals": {
+            "Le_Cam_Wiper_Ctl": 1,
+            "Le_Cam_Wiper_Frequency_Ctl": 30,
+            "Le_Cam_Wiper_Number_Ctl": 1
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 5000
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Left Camera Wiper Version Read",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 3,
+      "name": "Left Camera Wiper Reset",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x443",
+          "signals": {
+            "Le_Cam_Wiper_Ctl": 2
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 2000
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Left Camera Shield Action",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x680",
+          "signals": {
+            "CDC_auto_l_cmr_shield_req": 1
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 5000
+        },
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x680",
+          "signals": {
+            "CDC_auto_l_cmr_shield_req": 2
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 3000
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Left Camera Shield Version Read",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 6,
+      "name": "Left Camera Temperature Read",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 7,
+      "name": "Left Camera Window Heating",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x680",
+          "signals": {
+            "CDC_auto_l_cmr_heat_req": 2
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 60000
+        },
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x680",
+          "signals": {
+            "CDC_auto_l_cmr_heat_req": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Capture Left Side Wide-angle Raw Image",
+      "type":"SHELL",
+      "cmd": [
+        {
+          "action": "shell",
+          "id":"5",
+          "bash": "cd ~/platsw/tools/camera/ && rm video5-001.raw || true && ./x_cam -d /dev/video5 -s -e 1",
+          "signals":
+          {
+            "width": 1508,
+            "height": 2888
+          }
+        }
+      ]
+    }
+  ]
+},
+
+{
+  "name": "Roof Assembly - Rear",
+  "steps": [
+    {
+      "id": 1,
+      "name": "Rear Camera Wiper Action",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x443",
+          "signals": {
+            "Re_Cam_Wiper_Ctl": 2,
+            "Re_Cam_Wiper_Frequency_Ctl": 0,
+            "Re_Cam_Wiper_Number_Ctl": 0
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 2000
+        },
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x443",
+          "signals": {
+            "Re_Cam_Wiper_Ctl": 1,
+            "Re_Cam_Wiper_Frequency_Ctl": 30,
+            "Re_Cam_Wiper_Number_Ctl": 1
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 5000
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Rear Camera Wiper Version Read",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 3,
+      "name": "Rear Camera Wiper Reset",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x443",
+          "signals": {
+            "Re_Cam_Wiper_Ctl": 2
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 2000
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Rear Camera Shield Action",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x680",
+          "signals": {
+            "CDC_auto_b_cmr_shield_req": 1
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 5000
+        },
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x680",
+          "signals": {
+            "CDC_auto_b_cmr_shield_req": 2
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 3000
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Rear Camera Shield Version Read",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 6,
+      "name": "Rear Camera Temperature Read",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 7,
+      "name": "Rear Camera Window Heating",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x680",
+          "signals": {
+            "CDC_auto_b_cmr_heat_req": 2
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 60000
+        },
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x680",
+          "signals": {
+            "CDC_auto_b_cmr_heat_req": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Capture Rear Wide-angle Raw Image",
+      "type":"SHELL",
+      "cmd": [
+        {
+          "action": "shell",
+          "id":"2",
+          "bash": "cd ~/platsw/tools/camera/ && rm video2-001.raw || true && ./x_cam -d /dev/video2 -s -e 1",
+          "signals":
+          {
+            "width": 1508,
+            "height": 2894
+          }
+        }
+      ]
+    }
+  ]
+},
+
+{
+  "name": "Roof Assembly - Right",
+  "steps": [
+    {
+      "id": 1,
+      "name": "Right Camera Wiper Action",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x443",
+          "signals": {
+            "Ri_Cam_Wiper_Ctl": 2,
+            "Ri_Cam_Wiper_Frequency_Ctl": 0,
+            "Ri_Cam_Wiper_Number_Ctl": 0
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 2000
+        },
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x443",
+          "signals": {
+            "Ri_Cam_Wiper_Ctl": 1,
+            "Ri_Cam_Wiper_Frequency_Ctl": 30,
+            "Ri_Cam_Wiper_Number_Ctl": 1
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 5000
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Right Camera Wiper Version Read",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 3,
+      "name": "Right Camera Wiper Reset",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x443",
+          "signals": {
+            "Ri_Cam_Wiper_Ctl": 2
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 2000
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Right Camera Shield Action",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x680",
+          "signals": {
+            "CDC_auto_r_cmr_shield_req": 1
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 5000
+        },
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x680",
+          "signals": {
+            "CDC_auto_r_cmr_shield_req": 2
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 3000
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Right Camera Shield Version Read",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 6,
+      "name": "Right Camera Temperature Read",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 7,
+      "name": "Right Camera Window Heating",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x680",
+          "signals": {
+            "CDC_auto_r_cmr_heat_req": 2
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 60000
+        },
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x680",
+          "signals": {
+            "CDC_auto_r_cmr_heat_req": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Capture Right Side Wide-angle Raw Image",
+      "type":"SHELL",
+      "cmd": [
+        {
+          "action": "shell",
+          "id":"1",
+          "bash": "cd ~/platsw/tools/camera/ && rm video1-001.raw || true && ./x_cam -d /dev/video1 -s -e 1",
+          "signals":
+          {
+            "width": 1508,
+            "height": 2893
+          }
+        }
+      ]
+    }
+  ]
+},
+
+{
+  "name": "Roof Assembly - LiDAR_Others",
+  "steps": [
+    {
+      "id": 1,
+      "name": "Main LiDAR Shield Action",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x680",
+          "signals": {
+            "CDC_mLiDARShieldMove": 1
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 5000
+        },
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x680",
+          "signals": {
+            "CDC_mLiDARShieldMove": 2
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 3000
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Main LiDAR Shield Version Read",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 3,
+      "name": "Read xLiDAR Version Status Fault Information",
+      "type":"SHELL",
+      "cmd":[
+              {
+                "action":"shell",
+                "id":"77",
+                "bash": "docker exec -u autox -w /xurban xurban_dev_autox bash -c 'source /xurban/onboard/bootstrap/startup/xurban_base.sh && stdbuf -oL ./bazel-bin/onboard/drivers/lidar_service/lidar_status_reader /xurban/sensor/lidar/xlidar_status'"
+              }
+            ]
+    },
+    {
+      "id": 4,
+      "name": "Check xLiDAR Point Cloud",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 5,
+      "name": "xLiDAR Wiper Action",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x470",
+          "signals": {
+            "Tester_xLidWiperCtl": 2
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 2000
+        },
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x470",
+          "signals": {
+            "Tester_xLidWiperCtl": 1
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 5000
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "xLiDAR Wiper Version Read",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 7,
+      "name": "xLiDAR Wiper Reset",
+      "type": "CAN",
+      "cmd": [
+        {
+          "action": "can",
+          "bus": "BCAN2",
+          "id": "0x470",
+          "signals": {
+            "Tester_xLidWiperCtl": 2
+          }
+        },
+        {
+          "action": "sleep",
+          "ms": 2000
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "External Microphone Test",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 9,
+      "name": "Verify TCU Link Aggregation and Ethernet Communication",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 10,
+      "name": "XRemote Server Switching",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 11,
+      "name": "Check xNav Primary System Ethernet Link",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 12,
+      "name": "Check xNav Secondary System Ethernet Link",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 13,
+      "name": "Check xNav Primary System GNSS Antenna Link",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 14,
+      "name": "Check xNav Primary System CAN Link",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 15,
+      "name": "Check xNav Secondary System CAN Link",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 16,
+      "name": "Verify xNav Initial Time Synchronization",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 17,
+      "name": "Check xNav Primary and Secondary Ethernet Cable Routing",
+      "type": "NONE",
+      "cmd": []
+    },
+    {
+      "id": 18,
+      "name": "Air Tightness Test",
+      "type":"SHELL",
+      "cmd": [
+        {
+          "action": "shell",
+          "id":"88",
+          "bash": "sudo -S ./airtight_test"
+        }
+      ]
+    }
+  ]
+},
+
+{
+  "name":"Front Underbody Lifting Module",
+  "steps":[
+    {
+      "id":1,
+      "name":"Lift Extension 100 Percent",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x443",
+          "signals":{
+            "LM_Control_Move":1,
+            "LM_Move_Target_Position":100
+          }
+        },
+        {
+         "action":"sleep",
+         "ms":5000
+        }
+      ]
+    },
+    {
+      "id":2,
+      "name":"Software Version Read",
+      "type":"NONE",
+      "cmd":[]
+    },
+    {
+      "id":3,
+      "name":"Lift Reset",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x443",
+          "signals":{
+            "LM_Control_Move":1,
+            "LM_Move_Target_Position":0
+          }
+        },
+        {
+         "action":"sleep",
+         "ms":3000
+        }
+      ]
+    },
+    {
+      "id":4,
+      "name":"Infrared Fill Light On",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x680",
+          "signals":{
+            "CDC_ChassisCmrLEDPwr":2
+          }
+        }
+      ]
+    },
+    {
+      "id":5,
+      "name":"Underbody Camera Image Output",
+      "type":"NONE",
+      "cmd":[]
+    },
+    {
+      "id":6,
+      "name":"Underbody Camera Heating",
+      "type":"NONE",
+      "cmd":[]
+    }
+  ]
+},
+
+{
+  "name":"Middle Underbody Lifting Module",
+  "steps":[
+    {
+      "id":1,
+      "name":"Lift Extension 100 Percent",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x443",
+          "signals":{
+            "RAC_Control_Move":1,
+            "RAC_4_MoveTarget_Position":100
+          }
+        },
+        {
+         "action":"sleep",
+         "ms":5000
+        }
+      ]
+    },
+    {
+      "id":2,
+      "name":"Software Version Read",
+      "type":"NONE",
+      "cmd":[]
+    },
+    {
+      "id":3,
+      "name":"Lift Reset",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x443",
+          "signals":{
+            "RAC_Control_Move":1,
+            "RAC_4_MoveTarget_Position":0
+          }
+        },
+        {
+         "action":"sleep",
+         "ms":3000
+        }
+      ]
+    },
+    {
+      "id":4,
+      "name":"Infrared Fill Light On",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x680",
+          "signals":{
+            "CDC_MidchsCAMLEDPwr":2
+          }
+        }
+      ]
+    },
+    {
+      "id":5,
+      "name":"Underbody Camera Image Output",
+      "type":"NONE",
+      "cmd":[]
+    },
+    {
+      "id":6,
+      "name":"Underbody Camera Heating",
+      "type":"NONE",
+      "cmd":[]
+    }
+  ]
+},
+
+{
+  "name":"Rear Underbody Lifting Module",
+  "steps":[
+    {
+      "id":1,
+      "name":"Lift Extension 100 Percent",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x443",
+          "signals":{
+            "RAC_5_Control_Move":1,
+            "RAC_5_MoveTarget_Position":100
+          }
+        },
+        {
+         "action":"sleep",
+         "ms":5000
+        }
+      ]
+    },
+    {
+      "id":2,
+      "name":"Software Version Read",
+      "type":"NONE",
+      "cmd":[]
+    },
+    {
+      "id":3,
+      "name":"Lift Reset",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x443",
+          "signals":{
+            "RAC_5_Control_Move":1,
+            "RAC_5_MoveTarget_Position":0
+          }
+        },
+        {
+         "action":"sleep",
+         "ms":3000
+        }
+      ]
+    },
+    {
+      "id":4,
+      "name":"Infrared Fill Light On",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x680",
+          "signals":{
+            "CDC_RechsCAMLEDPwr":2
+          }
+        }
+      ]
+    },
+    {
+      "id":5,
+      "name":"Underbody Camera Image Output",
+      "type":"NONE",
+      "cmd":[]
+    },
+    {
+      "id":6,
+      "name":"Underbody Camera Heating",
+      "type":"NONE",
+      "cmd":[]
+    }
+  ]
+},
+
+{
+  "name":"Screen Sliding Mechanism Assembly",
+  "steps":[
+    {
+      "id":1,
+      "name":"Self-learning Reset and Screen Sliding",
+      "type":"CAN",
+      "cmd":[
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x207",
+          "signals":{
+            "BDU_LowVoltReq":2,
+            "BDU_LowVoltReqValid":1
+          }
+        },
+        {
+         "action":"sleep",
+         "ms":2000
+        },
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x29",
+          "signals":{
+            "DSMA_Stroke_Reset":1,
+            "DSMA_Control_Request":0
+          }
+        },
+        {
+         "action":"sleep",
+         "ms":3000
+        },
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x29",
+          "signals":{
+            "DSMA_Control_Request":1,
+            "DSMA_Motor_Control_Target_Position":0
+          }
+        },
+        {
+         "action":"sleep",
+         "ms":5000
+        },
+        {
+          "action":"can",
+          "bus":"BCAN2",
+          "id":"0x29",
+          "signals":{
+            "DSMA_Control_Request":1,
+            "DSMA_Motor_Control_Target_Position":100
+          }
+        },
+        {
+         "action":"sleep",
+         "ms":5000
+        }
+      ]
+    },
+    {
+      "id":2,
+      "name":"Version Read",
+      "type":"NONE",
+      "cmd":[]
+    }
+  ]
+}
+  ]
+}

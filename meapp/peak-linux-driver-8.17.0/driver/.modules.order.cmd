@@ -1,0 +1,1 @@
+cmd_/home/linbinzhou/EOL/meapp/peak-linux-driver-8.17.0/driver/modules.order := {   echo /home/linbinzhou/EOL/meapp/peak-linux-driver-8.17.0/driver/pcan.ko; :; } | awk '!x[$$0]++' - > /home/linbinzhou/EOL/meapp/peak-linux-driver-8.17.0/driver/modules.order
