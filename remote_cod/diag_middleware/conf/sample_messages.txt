@@ -1,0 +1,6 @@
+# Handle remote-downed diagnostic tasks
+ACTION=READ_DTC;ECU=BCM
+ACTION=CLEAR_DTC;ECU=BCM
+ACTION=FLASH_ECU;ECU=BCM;IMAGE=/tmp/bcm_v2.bin
+ACTION=FLASH_ALL;IMAGE=/tmp/full_car_v3.bin
+ACTION=FLASH_ECU;ECU=EPS;IMAGE=/tmp/eps_v1.bin
